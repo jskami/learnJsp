@@ -1,0 +1,41 @@
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+</head>
+
+<body>
+	<%
+	// 중첩된 반복구문 / *을 5행 5열로 출력해보자!
+	for (int i = 0; i < 5; i++) {  // 변수를 내부에서 선언할거야
+		for (int j = 0; j < 5; j++) {
+			out.print("*");
+		}
+	out.print("<br>");
+	}
+	
+	// 구구단을 만들어 보자!
+	
+	
+	// 테이블 문법을 사용해보자	
+	out.print("<h5>테이블 문법을 사용해보자<h5>");
+	out.print("<table border='1'>");
+	for (int i = 1; i <= 9; i++) {
+		out.print("<tr>");
+		for (int j = 1; j <= 9; j++) {
+			//out.print("<td>");
+			out.print("<td>" + i + "*" + j + "=" + (i*j) + " " + "</td>");
+			//out.print("</td>");
+		}
+		out.print("</tr>");
+	}
+	out.print("</table>");
+	out.print("<br>");
+	out.print("<br>");
+	
+	%>
+</body>
+</html>

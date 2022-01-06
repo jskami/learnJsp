@@ -1,0 +1,36 @@
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+</head>
+<body>
+	<!-- Ex0104_3에서 넘어온 정보를 전송받아서 처리하자! -->
+	<%
+		// 이름을 리턴받아-
+		request.setCharacterEncoding("utf-8"); // 인코딩 방식 설정, 가장 위에서 작성해야 아래의 모든 코딩에도 영향을 미치니까.. rg?
+		String sname = request.getParameter("sname"); //리퀘스트라는 객체가 따로 존재한다. 클라이언트로부터 넘어온 정보를 받는 객체로서, 이녀석을 사용하자
+			// ↑여기 이름은 뭘 해도 상관없지만 알아보기 쉽게 sname이라고 동일하게 하자 / 위 문법은 '전송문자열 저장'이다.
+		out.print(sname + "<br>");
+		
+		// 나이를 리턴받아-
+		String sage = request.getParameter("sage"); // 문자는 문자열이라 비어있건 채워져있건 상관 없지만, 정수형은 이야기가 달라진다. 
+		out.print(sage + "<br>");
+		
+		// 지역을 리턴받아-
+		String sarea = request.getParameter("sarea");
+		out.print(sarea + "<br>");
+		
+		// 연도를 리턴받아-
+		String syear = request.getParameter("syear");
+		out.print(syear + "<br>");
+		
+		// 취미를 리턴받아-
+		String shobby = request.getParameter("shobby");
+		out.print(shobby + "<br>");
+		
+	%>
+</body>
+</html>

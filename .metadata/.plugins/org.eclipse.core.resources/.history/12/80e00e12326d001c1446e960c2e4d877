@@ -1,0 +1,57 @@
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+</head>
+<body>
+	<!-- Ex0104_3에서 넘어온 정보를 전송받아서 처리하자! -->
+	<%
+		// 이름을 리턴받아-
+		request.setCharacterEncoding("utf-8"); // 인코딩 방식 설정, 가장 위에서 작성해야 아래의 모든 코딩에도 영향을 미치니까.. rg?
+		String sname = request.getParameter("sname"); //리퀘스트라는 객체가 따로 존재한다. 클라이언트로부터 넘어온 정보를 받는 객체로서, 이녀석을 사용하자
+			// ↑여기 이름은 뭘 해도 상관없지만 알아보기 쉽게 sname이라고 동일하게 하자 / 위 문법은 '전송문자열 저장'이다.
+		out.print(sname + "<br>");
+		
+		// 나이를 리턴받아-
+		String sage = request.getParameter("sage"); 
+		out.print(sage + "<br>");
+		
+		// 지역을 리턴받아-
+		String sarea = request.getParameter("sarea");
+		out.print(sarea + "<br>");
+		
+		// 연도를 리턴받아-
+		String syear = request.getParameter("syear");
+		out.print(syear + "<br>");
+		
+		// 취미를 리턴받아-
+		String shobby = request.getParameter("shobby");
+		out.print(shobby + "<br>");
+		
+		// sage를 정수형으로 변환시켜보자!  / + 예외처리를 해보자!
+		int iage = 0;  // 전역변수
+		boolean flag = true;  // 나이가 정상으로 넘어온다고 가정
+		try {
+			iage = Integer.parseInt(sage); // 정수형태의 문자열을 정수로 형변환 하는 방법! 진짜 중요 integer캐스팅 숙지할 것
+		} catch (Exception e) { // 예외가 발생했을 경우 처리할 내용
+			//iage = 25;  // 예외가 발생 안하면 37라인이 정상 작동, 예외 발생하면 39라인이 작동 rg? 디폴트 값으로 25를 준것-
+			flag = false;  // 예외가 발생된 상황
+		}
+		
+		if (flag == false) {  // 예외가 발생했을 경우
+%> <!-- 이것은 스크립트 문법을 분리 시키기 위함이다.  -->
+			<script>
+				alert("나이가 잘못 입력 되었습니다.");
+				history.back();  // 이전 페이지로 이동
+			</script>
+<%	
+		} else {  // 정상일 경우	
+			out.print(iage + "<br>");
+		}
+		// ↑ 이 처럼 사용자가 나이 입력란에 문자를 입력할 수 있는 예외가 발생할 수 있으니까 개발자는 다양한 변수를 생각하고 예외를 처리할 수 있도록 꼼꼼하게, 신중하게 코딩해야 할 것이다.
+	%>
+</body>
+</html>
