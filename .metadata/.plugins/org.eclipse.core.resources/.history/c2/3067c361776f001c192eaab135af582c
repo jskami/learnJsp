@@ -1,0 +1,25 @@
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+</head>
+<body> <!-- 리스트로 보내기 전 중간 단계...음? write.jsp의 폼 안에 세 항목이 제대로 넘어오는지 확인할거야 -->
+<%
+	String b_subject = request.getParameter("b_subject"); // 혼동을 피하기 위해 객체 이름은 동일하게 쓰자, 애초에 이름이 같아야 넘어오니까...
+	String b_name = request.getParameter("b_name");
+	String b_contents = request.getParameter("b_contents");
+	// 굳이 확인할 필욘 없지만 그래도 출력 잘 되는지 확인 해 보자!
+	out.print(b_subject + "/" + b_name + "/" + b_contents);
+	
+
+
+
+
+
+
+%>
+</body>
+</html>

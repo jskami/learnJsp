@@ -1,0 +1,29 @@
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
+<%@ page import="java.sql.*"%> <!-- 상단에서 import구문을 적어줘야 로드 가능 -->
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+</head>
+<body>
+	<h1>JDBC 테스트</h1> 
+<%
+	Connection conn = null; // 전역변수 추가(접속객체) / connection객체는 내장되어 있는 기능이다. 생성과 동시에 null값 부여.
+	PreparedStatement pstmt = null; // 쿼리객체
+	ResultSet re = null;
+	try {
+		Class.forName("com.mysql.jdbc.Driver"); // JDBC 드라이버를 로드하는 문장으로서 Driver 대문자 주의!
+		//out.print("드라이버 로드 성공");
+		String url = "jdbc:mysql://localhost:3306/mysql";  // 접속url, 맨 뒤에 mysql은 db이름이다.
+		String user = "root";  // 원칙상 아이디와, 비밀번호는 반드시 설정 해줘야 하지만, 학습용이니까 기본 설정으로 가자!
+		String passwd = "";
+		conn = DriverManager.getConnection(url, user, passwd);
+		//out.print(conn);
+	} catch (Exception e) {
+		out.print(e);
+	}
+%>
+</body>
+</html>
