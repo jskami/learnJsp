@@ -8,7 +8,8 @@
 <title>Insert title here</title>
 </head>
 <body>
-<%
+<%	
+	// view.jsp는 
 	request.setCharacterEncoding("utf-8"); // 한글 깨질지도 모르니까 그냥 무조건 써..
 	// 넘기는걸 받을거야!
 	String b_num = request.getParameter("b_num");  // Get방식에 의한 전송
@@ -34,14 +35,16 @@
 		//pstmt = conn.prepareStatement(query); // 불러온 쿼리를 쿼리결과 객체로 생성
 		
 		rs = pstmt.executeQuery();  // 쿼리 실행해서 결과를 rs에 반환받음
-		rs.next();  // 첫 번째 레코드로 이동
+		rs.next();  // 첫 번째 레코드로 이동(레코드는 단 1개만 검색됨)
 		
 		//int ib_num = rs.getInt("b_num");  // 정수형으로 쓴다는걸 명시하기 위해 i를 붙인것 뿐이야
 		String b_subject = rs.getString("b_subject");
 		String b_name = rs.getString("b_name");
 		String b_contents = rs.getString("b_contents");
 		String b_date = rs.getString("b_date");
-		b_contents = b_contents.replace("\n", "<br>");  // 매개변수 둘 다 스트링으로 줄거야, 치환해서 업뎃 + 새로 배운 함수 : .replace
+		// 매개변수 둘 다 스트링으로 줄거야, 치환해서 업뎃 + 새로 배운 함수 : .replace
+		b_contents = b_contents.replace("\n", "<br>"); // 실제 글을 작성할 때 엔터를 치면 줄 바꿈이 적용된다!
+		
 		
 		
 %>		
@@ -59,7 +62,7 @@
 				<td align="center" width="300"><%=b_name %><br></td>
 			</tr>	
 			<tr>	
-				<td align="center" width="150">작성일</td>
+				<td align="center" width="150">내용</td>
 				<td align="center" width="300"><%=b_contents %><br></td>
 			</tr>	
 			<tr>	
@@ -68,8 +71,8 @@
 			</tr>
 			<tr>
 				<td align="center" colspan="2">
-					수정 : update.jsp
-					삭제 : delete.jsp -> 다음 시간에! ㅃ2// 
+					<a href="./update.jsp?b_num=<%=b_num %>">[수정]</a>&nbsp;&nbsp;
+					<a href="./delete.jsp?b_num=<%=b_num %>">[삭제]</a> 
 				</td>
 			</tr>
 <%			

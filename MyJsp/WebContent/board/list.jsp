@@ -34,7 +34,7 @@
 				<td align="center" width="100">글 번호</td>
 				<td width="250">제목</td>
 				<td align="center" width="130">작성자</td>
-				<td align="center" width="150">작성일</td>
+				<td align="center" width="150">내용</td>
 				<td align="center" width="150">등록일</td>
 			</tr>
 <%			

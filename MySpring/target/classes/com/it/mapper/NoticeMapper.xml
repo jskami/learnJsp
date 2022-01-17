@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+	PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+	"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.it.mapper.NoticeMapper">
+	<select id="getList" resultType="com.it.domain.NoticeVO">
+		select * from tblnotice order by n_num desc
+	</select>
+	<insert id="insert">
+		insert into tblnotice (n_subject, n_name, n_contents)
+		values (#{n_subject}, #{n_name}, #{n_contents})
+	</insert>
+	<select id="read" resultType="com.it.domain.NoticeVO">
+		select * from tblnotice where n_num = #{n_num}
+	</select>
+	<update id="update">
+		update tblnotice set n_subject = #{n_subject}, n_name = #{n_name}, n_contents = #{n_contents} where n_num = #{n_num}
+	</update>
+	<delete id="delete">
+		delete from tblboard where n_num = #{n_num}
+	</delete>
+
+</mapper>
