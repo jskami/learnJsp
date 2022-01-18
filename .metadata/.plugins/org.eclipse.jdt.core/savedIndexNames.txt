@@ -44,7 +44,6 @@ INDEX VERSION 1.131+C:\myWorkSpace\learnJsp\.metadata\.plugins\org.eclipse.jdt.c
 1817254123.index
 1773718582.index
 3284390656.index
-1450825733.index
 3765789418.index
 1835411520.index
 4130471406.index
