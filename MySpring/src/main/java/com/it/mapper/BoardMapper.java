@@ -5,6 +5,7 @@ import java.util.List;
 import com.it.domain.BoardVO;
 
 public interface BoardMapper {
+	
 	public List<BoardVO> getList(); // 제네릭 문법으로 <>안에 타입 입력 -> 반환, 보드vo를 배열형태로 리스팅하겠다!-의 의미 
 		
 	public void insert(BoardVO board); // BoardVO의 데이터를 받아 인서트 할 이름을 board라 정한거야. CRUD중 C한 거야

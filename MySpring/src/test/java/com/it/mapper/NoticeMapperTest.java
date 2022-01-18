@@ -58,24 +58,7 @@ public class NoticeMapperTest {
 		notice.setN_num(1);
 		
 		mapper.delete(notice);
-		log.info(notice);
+//		log.info(notice);
 	}
 	
-	
-	
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 }
