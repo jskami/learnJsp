@@ -13,7 +13,7 @@
                     <!-- DataTales Example -->
                     <div class="card shadow mb-4">
                         <div class="card-header py-3">
-                            <h6 class="m-0 font-weight-bold text-primary"><a href="/board/insert">게시판 글작성</a></h6>
+                            <h6 class="m-0 font-weight-bold text-primary"><a href="/notice/insert">게시판 글작성</a></h6>
                         </div>
                         <div class="card-body">
                             <div class="table-responsive">
@@ -27,12 +27,12 @@
                                         </tr>
                                 	</thead>
                                 	<tbody>
-                                		<c:forEach items="${list}" var="board"> <%-- ${list}내의 이름이 model.addAttribute(이름, 메서드) 여기서의 이름과 같아야 한다. / 컨트롤해서 넘긴 모델을 이렇게 받아야 한다. 글이 5개 있다면 5번 반복하면서 보드에 저장한다는 의미 --%>
+                                		<c:forEach items="${list}" var="notice"> <%-- ${list}내의 이름이 model.addAttribute(이름, 메서드) 여기서의 이름과 같아야 한다. / 컨트롤해서 넘긴 모델을 이렇게 받아야 한다. 글이 5개 있다면 5번 반복하면서 보드에 저장한다는 의미 --%>
                                 			<tr>
-                                				<td>${board.b_num}</td>
-                                				<td><a href="/board/view?b_num=${board.b_num}">${board.b_subject}</a></td> <!-- <- 링크를 넣어보자, 절대로 중간에 공백이 존재해서는 안된다. 제목에 글번호를 불러와 링크를 거는중이야. -->
-                                				<td>${board.b_name}</td>
-                                				<td><fmt:formatDate pattern="yyyy-mm-dd" value="${board.b_date}"/>
+                                				<td>${notice.n_num}</td>
+                                				<td><a href="/notice/view?b_num=${notice.n_num}">${notice.n_subject}</a></td> <!-- <- 링크를 넣어보자, 절대로 중간에 공백이 존재해서는 안된다. 제목에 글번호를 불러와 링크를 거는중이야. -->
+                                				<td>${notice.n_name}</td>
+                                				<td><fmt:formatDate pattern="yyyy-mm-dd" value="${notice.n_date}"/>
                                 			</tr>
                                 		</c:forEach>
                                 	</tbody>

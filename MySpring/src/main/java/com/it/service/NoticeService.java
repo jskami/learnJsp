@@ -1,11 +1,11 @@
-package com.it.mapper;
+package com.it.service;
 
 import java.util.List;
 
 import com.it.domain.NoticeVO;
 
-public interface NoticeMapper {
-	
+public interface NoticeService {
+
 	public List<NoticeVO> getList();
 	
 	public void insert(NoticeVO notice);

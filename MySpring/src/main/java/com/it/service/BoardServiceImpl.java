@@ -43,11 +43,4 @@ public class BoardServiceImpl implements BoardService { // 이 클래스에서�
 		mapper.delete(board);
 	}
 	
-	
 }
-
-
-
-
-
-

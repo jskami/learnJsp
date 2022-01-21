@@ -31,8 +31,8 @@ public class BoardMapperTest {
 		board.setB_subject("게시판 테스트입니다.");
 		board.setB_name("블러드오렌지");
 		board.setB_contents("게시판이다.");
-		mapper.insert(board); // 아래에서 제대로 출력된 것을 확인했으면 로그인포를 지우거나 주석하고 맵퍼를 테스트하자!
-		log.info(board); // System.out.plintln()과 같은 의미이다. 위에서 맵퍼를 통해 바로 DB에 저장하지말고 로그인포를 통해 제대로 출력되는지 확인먼저 하고 데이터를 저장하자!
+		mapper.insert(board); // 아래에서 제대로 출력된 것을 확인했으면 로그인포를 지우거나 주석하고 맵퍼를 테스트하자! / DB로 전송!
+		log.info(board); // System.out.plintln()과 같은 의미이다. 위에서 맵퍼를 통해 바로 DB에 저장하지말고 로그인포를 통해 제대로 출력되는지 확인먼저 하고 데이터를 저장하자! / 프로그램 내 출력(확인용)!
 	}
 	
 	//@Test
@@ -40,7 +40,7 @@ public class BoardMapperTest {
 		BoardVO board = new BoardVO(); // 빈 가방 생성
 		board.setB_num(2); // 이제 하나만 선택해서 볼거야(=set), 2번을 VO객체에 저장
 		
-		board = mapper.read(board); // read 메서드 호출해서 객체 반환
+		board = mapper.read(board); // read 메서드 호출해서 객체 반환 / 대상(데이터를 담고 있는 가방)을 지정하지 않으면 null값으로만 출력한다(멤버변수만 있는걸 불러온다는 뜻)
 		log.info(board);
 	}
 	
