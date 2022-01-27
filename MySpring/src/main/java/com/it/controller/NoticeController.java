@@ -42,5 +42,39 @@ public class NoticeController {
 		return "redirect:/notice/list";
 	}
 	
+	@GetMapping("/view")
+	public void view(NoticeVO notice, Model model) {
+		log.info("--------읽기 전--------");
+		log.info(notice);
+		notice = service.read(notice);
+		log.info("--------읽은 후--------");
+		log.info(notice);
+		model.addAttribute("notice", notice);
+	}
 	
+	@GetMapping("/update")
+	public void update(NoticeVO notice, Model model) {
+		log.info("---------업데이트를 위한 번호--------");
+		log.info(notice);
+		notice = service.read(notice);
+		log.info("---------업데이트를 위한 번호--------");
+		log.info(notice);
+		model.addAttribute("notice", notice);
+	}
+	
+	@PostMapping("/update")
+	public String update(NoticeVO notice) {
+		log.info("-------업데이트 데이터-------");
+		log.info(notice);
+		service.update(notice);
+		return "redirect:/notice/view?n_num=" + notice.getN_num();
+	}
+
+	@GetMapping("/delete")
+	public String delete(NoticeVO notice) {
+		log.info("--------삭제--------");
+		service.delete(notice);
+		return "redirect:/notice/list";
+	}
 }
+
