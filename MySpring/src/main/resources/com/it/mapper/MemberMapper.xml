@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+	PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+	"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.it.mapper.MemberMapper">
+	<select id="getList" resultType="com.it.domain.MemberVO"> <!-- 이 경로로 값을 리턴 받을거야 -->
+		select * from tblmember order by m_id <!-- 세미콜론 안써도 돼 + 넘겨받는 값이 없으니까 #을 쓸 필요도 없지! -->
+	</select>
+	<!-- 멤버맵퍼에서 사용가능한 태그를 알아보자! -->
+	<insert id="insert">
+		insert into tblmember (m_id, m_passwd, m_name)
+		values (#{m_id}, #{m_passwd}, #{m_name})
+		
+	</insert>
+	<select id="read" resultType="com.it.domain.MemberVO">
+		select * from tblmember where m_id = #{m_id} 
+	</select>
+	
+	<!-- 로그인 처리 전용 쿼리를 만들어보자 / 잠시 봉인- -->
+	<!-- <select id="auth" resultType="com.it.domain.MemberVO">
+		select * from tblmember where m_id = #{m_id} and m_passwd = #{m_passwd}
+	</select> -->
+	
+	<update id="update">
+		update tblmember set m_name = #{m_name}, m_passwd = #{m_passwd}
+		where m_id = #{m_id}
+	</update>
+	<delete id="delete">
+		delete from tblmember where m_id = #{m_id}
+	</delete>
+	
+</mapper>

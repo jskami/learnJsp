@@ -1,18 +1,49 @@
 /* 쇼핑몰 구현 */
-use mysql;
+use webjava;
+
+/* ========== 22.01.28 추가 ======== */
+-- DB를 생성하자
+-- create database webjava default character set utf8;
+-- 유저 생성 및 암호 지정
+-- grant all privileges on webjava.* to javauser@localhost identified by 'webjava';
+
+/* tblboard 테이블 */
+create table tblboard (
+ b_num int not null primary key AUTO_INCREMENT,
+ b_subject varchar(100) not null,
+ b_contents varchar(2000) not null,
+ b_name varchar(50) not null,
+ b_date datetime not null default sysdate()
+);
+INSERT INTO tblboard (b_subject, b_name, b_contents) VALUES ('제목이다','홍길동','jsp프로그래밍');
+
+/* tblnotice 테이블 */
+create table tblnotice (
+ n_num int not null primary key AUTO_INCREMENT,
+ n_subject varchar(100) not null,
+ n_contents varchar(2000) not null,
+ n_name varchar(50) not null,
+ n_date datetime not null default sysdate()
+);
+INSERT INTO tblnotice (n_subject, n_name, n_contents) VALUES ('제목이다','홍길동','jsp프로그래밍');
+
+
+/* ========== 22.01.28 종료 ======== */
+
 -- 1. 고객을 만들자
 create table tblmember (
 	m_id VARCHAR(50) NOT NULL PRIMARY KEY, -- 아이디
+	m_passwd VARCHAR(50) NOT NULL, -- 비번
 	m_name VARCHAR(50) NOT NULL, -- 성명
 	m_rdate DATETIME NOT NULL DEFAULT SYSDATE(), -- 최초 입력일과 수정일을 설정하는게 좋다.	
 	m_udate DATETIME NOT NULL DEFAULT SYSDATE() -- 수정일
 );
-select * from tblmember;
+-- select * from tblmember;
 
 /* 상품 테이블 */
 create table tblproduct (
 	p_code int not null primary key auto_increment,
-	p_name VARCHAR(100) not null,
+	p_name VARCHAR(100) not null, 
 	p_price int not null,
 	p_rdate datetime not null default sysdate(),
 	p_udate datetime not null default sysdate()
@@ -81,8 +112,8 @@ drop table tblmember;
 */
 
 -- 고객을 추가해보자
-insert into tblmember (m_id, m_name) values ('tiger', '홍길동');
-insert into tblmember (m_id, m_name) values ('lion', '김삿갓');
+insert into tblmember (m_id, m_name, m_passwd) values ('tiger', '홍길동', '1234');
+insert into tblmember (m_id, m_name, m_passwd) values ('lion', '김삿갓', '1234');
 select * from tblmember;
 
 -- 상품을 추가해보자
