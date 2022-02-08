@@ -8,13 +8,12 @@
 
                     <!-- Page Heading -->
                     <h1 class="h3 mb-2 text-gray-800">LIST</h1>
-                    <a href="/member/login"><button>로그인</button></a>
                     <p class="mb-4"></p>
 
                     <!-- DataTales Example -->
                     <div class="card shadow mb-4">
                         <div class="card-header py-3">
-                            <h6 class="m-0 font-weight-bold text-primary"><a href="/member/insert">회원 목록</a></h6>
+                            <h6 class="m-0 font-weight-bold text-primary"><a href="/member/insert">insert</a></h6>
                         </div>
                         <div class="card-body">
                             <div class="table-responsive">
@@ -32,7 +31,7 @@
                                 			<tr>
                                 				<td>${member.m_id}</td>
                                 				<td>${member.m_passwd}</td>
-                                				<td><a href="/member/view?m_name=${member.m_name}">${member.m_name}</a></td>
+                                				<td><a href="/member/view?m_id=${member.m_id}">${member.m_id}</a></td>
                                 				<td><fmt:formatDate pattern="yyyy-mm-dd" value="${member.m_rdate}"/>
                                 			</tr>
                                 		</c:forEach>

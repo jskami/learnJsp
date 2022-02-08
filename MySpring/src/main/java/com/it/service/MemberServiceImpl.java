@@ -20,13 +20,13 @@ public class MemberServiceImpl implements MemberService {
 	
 	@Override
 	public MemberVO read(MemberVO member) { // read의 역할 : 특정 글에 대한 값을 받아 읽어준다.
-		return mapper.read(member); // board를 넘겨주면 BoardMapper.xml의 read에서 #기호의 번호 하나만 받아서 연산해줄거야
+		return mapper.read(member); // member를 넘겨주면 MemberMapper.xml의 read에서 #기호의 번호 하나만 받아서 연산해줄거야
 	}
 	
 	@Override
 	public boolean auth(MemberVO member) { // 사용자가 로그인할 때 입력하는 정보는 단 두개(ID,PW)니까 그 두개만 넘어오는거야
 		MemberVO tmp = new MemberVO(); // 임시변수를 만들었다.
-		tmp = member = mapper.read(member); // ID를 이용해서 모든 필드 정보 획득, ID가 틀리면 null
+		tmp = mapper.read(member); // ID를 이용해서 모든 필드 정보 획득, ID가 틀리면 null
 		if(tmp != null) { // ID가 맞는 경우 tmp에 사용자 정보(전부) 반환 // 만약, ID는 틀렸고 PW가 맞았다면 정보는 넘어오지 않아. 근데 ID는 맞고 PW가 틀렸다면 정보는 넘어오게 돼. 이유는 위에 read가 ID값으로만 필드를 불러오는거니까..근데, 이게 문제라는거지!
 			if (member.getM_passwd().equals(tmp.getM_passwd())) { //pw만 비교하면 돼, 현재 pw는 문자열이니까 equals를 사용한다. 암호가 동일할 경우
 				log.info(tmp);

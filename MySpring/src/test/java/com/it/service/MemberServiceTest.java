@@ -1,6 +1,5 @@
 package com.it.service;
 
-import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.test.context.ContextConfiguration;
@@ -28,11 +27,11 @@ public class MemberServiceTest {
 		log.info(member);
 	}
 	
-	@Test
+	//@Test
 	public void testAuth() {
 		MemberVO member = new MemberVO();
 		member.setM_id("tiger");
-		member.setM_passwd("1234"); // 여기 뭔가 이상하다?
+		member.setM_passwd("1234");
 		service.auth(member);
 	}
 	
