@@ -1,5 +1,7 @@
 package com.it.controller;
 
+import javax.servlet.http.HttpSession;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -36,12 +38,12 @@ public class MemberController {
 	
 	@PostMapping("/insert") // 포스트매핑을 통해 데이터를 가져온다.
 	public String insert(MemberVO member) {
-		log.info("----------글쓰기 시작---------");
+		log.info("----------멤버추가 시작---------");
 		log.info(member);  // 내가 입력한 데이터'만' 불러오면 성공
 		
 		// 테이블에 입력
 		service.insert(member); // DB로 전송할 수 있다!
-		log.info("----------글쓰기 완료---------");
+		log.info("----------멤버추가 완료---------");
 		
 		// 리스트로 이동(return 사용)
 		return "redirect:/member/list"; // 컨트롤러를 거치지 않고 바로 이동되기 때문에 오류가 발생할 가능성이 높다. 기본원칙은 url을 이동할 때 컨트롤러를 거쳐가야해, 그래서 직접 url을 쓰지 않고 앞에 키워드를 작성해줘야 해! redirect: 키워드는 컨트롤러를 거쳐서 해당 경로로 이동하라는 의미이다.
@@ -81,5 +83,31 @@ public class MemberController {
 		service.delete(member); // delete.jsp파일은 필요없고 이 구문에서 삭제가 처리된다.
 		return "redirect:/member/list";
 	}
+	
+	@GetMapping("/login")
+	public void login() {
+		//로그인 페이지 호출
+	}
+	
+	@PostMapping("/login")
+	public void login(MemberVO member, HttpSession session) { // 로그인에서 넘어오는 데이터를 memberVO의 member가방에 담을거야. 세션객체의 세션변수를 지정해준다.
+		log.info(member);
+		boolean chk = service.auth(member); // 서비스에 로그인 정보를 건네준다. // 현재 서비스에 로그인이 찍히지 않으니까 여기서 해보자. // 체크변수를 불리언 타입으로 만들어서 확인해보자.
+		if (chk == true) {
+			member = service.read(member); // read.(member)에서 멤버에는 id와pw가 들어있다.
+			session.setAttribute("m_id", member.getM_id()); // 세션변수 생성
+			session.setAttribute("m_name", member.getM_name()); // 세션변수 생성
+			log.info("인증성공");
+		} else {
+			log.info("인증실패");
+		}
+	}
+	
+	@GetMapping("/logout")
+	public String logout(HttpSession session) {
+		session.invalidate(); // 이 메서드로 세션을 끊는다.(관련된 모든 세션변수가 끊어진다.)
+		return "redirect:/"; // 최상위 위치 밑에 홈으로 반환 가는거야
+	}
+	
 	
 }

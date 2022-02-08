@@ -5,6 +5,7 @@ import java.util.List;
 import com.it.domain.MemberVO;
 
 public interface MemberMapper {
+	
 	public List<MemberVO> getList();
 	
 	public void insert(MemberVO member); 

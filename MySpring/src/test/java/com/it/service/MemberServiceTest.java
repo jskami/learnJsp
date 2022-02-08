@@ -37,7 +37,7 @@ public class MemberServiceTest {
 	
 	//@Test
 	public void testGetList() {
-		service.getList().forEach(board -> log.info(board));
+		service.getList().forEach(board -> log.info(board)); // board는 아무 의미 없는것, 다른 이름으로 정해도 됨
 	}
 	
 	//@Test

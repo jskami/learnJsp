@@ -8,18 +8,18 @@
                 <div class="container-fluid">
 
                     <!-- Page Heading -->
-                    <h1 class="h3 mb-2 text-gray-800">작성</h1>
+                    <h1 class="h3 mb-2 text-gray-800">회원가입</h1>
                     <p class="mb-4"></p>
 
                     <!-- DataTales Example -->
                     <div class="card shadow mb-4">
                         <div class="card-header py-3">
-                            <h6 class="m-0 font-weight-bold text-primary"><a href="/member/list">작성 정보</a></h6>
+                            <h6 class="m-0 font-weight-bold text-primary"><a href="/member/list">가입 정보입력</a></h6>
                         </div>
                         <div class="card-body">
                             <div class="table-responsive">
 
-						<form method="post" action="/member/insert" class="user">
+						<form method="post" action="/member/login" class="user">
                            <div class="form-group row">
                                <div class="col-sm-6 mb-3 mb-sm-0">
                                	   <label>아이디</label>
@@ -29,13 +29,7 @@
                            <div class="form-group row">
                                <div class="col-sm-6 mb-3 mb-sm-0">
                                	   <label>비밀번호</label>
-                                   <input type="text" class="form-control" name="m_passwd" placeholder="PASSWORD">
-                               </div>
-                           </div>
-                           <div class="form-group row">
-                               <div class="col-sm-6 mb-3 mb-sm-0">
-                               	   <label>이름</label>
-                                   <input type="text" class="form-control" name="m_name" placeholder="NAME">
+                                   <input type="password" class="form-control" name="m_passwd" placeholder="PASSWORD">
                                </div>
                            </div>
                            <div class="form-group row">
@@ -44,6 +38,7 @@
                                </div>
                            </div>
                        	</form>
+                       	
 					</div>
 				</div>
 			</div>

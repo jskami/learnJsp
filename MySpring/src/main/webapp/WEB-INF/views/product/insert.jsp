@@ -8,39 +8,33 @@
                 <div class="container-fluid">
 
                     <!-- Page Heading -->
-                    <h1 class="h3 mb-2 text-gray-800">작성</h1>
+                    <h1 class="h3 mb-2 text-gray-800">상품등록</h1>
                     <p class="mb-4"></p>
 
                     <!-- DataTales Example -->
                     <div class="card shadow mb-4">
                         <div class="card-header py-3">
-                            <h6 class="m-0 font-weight-bold text-primary"><a href="/member/list">작성 정보</a></h6>
+                            <h6 class="m-0 font-weight-bold text-primary"><a href="/product/list">상품 리스트</a></h6>
                         </div>
                         <div class="card-body">
                             <div class="table-responsive">
 
-						<form method="post" action="/member/insert" class="user">
+						<form method="post" action="/product/insert" class="user">
                            <div class="form-group row">
                                <div class="col-sm-6 mb-3 mb-sm-0">
-                               	   <label>아이디</label>
-                                   <input type="text" class="form-control" name="m_id" placeholder="ID">
+                               	   <label>상품명</label>
+                                   <input type="text" class="form-control" name="p_name" placeholder="상품명">
                                </div>
                            </div>
                            <div class="form-group row">
                                <div class="col-sm-6 mb-3 mb-sm-0">
-                               	   <label>비밀번호</label>
-                                   <input type="text" class="form-control" name="m_passwd" placeholder="PASSWORD">
+                               	   <label>단가</label>
+                                   <input type="text" class="form-control" name="p_price" placeholder="단가">
                                </div>
                            </div>
                            <div class="form-group row">
                                <div class="col-sm-6 mb-3 mb-sm-0">
-                               	   <label>이름</label>
-                                   <input type="text" class="form-control" name="m_name" placeholder="NAME">
-                               </div>
-                           </div>
-                           <div class="form-group row">
-                               <div class="col-sm-6 mb-3 mb-sm-0">
-                                   <input type="submit" class="form-control" placeholder="제출">
+                                   <input type="submit" value="상품등록" class="form-control" placeholder="제출">
                                </div>
                            </div>
                        	</form>
