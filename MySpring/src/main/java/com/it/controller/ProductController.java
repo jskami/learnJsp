@@ -1,5 +1,13 @@
 package com.it.controller;
 
+import java.io.File;
+import java.util.Iterator;
+import java.util.List;
+
+import javax.servlet.http.HttpServletRequest;
+
+import org.apache.commons.fileupload.DiskFileUpload;
+import org.apache.commons.fileupload.FileItem;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -44,9 +52,37 @@ public class ProductController {
 	@GetMapping("/view")
 	public void view(ProductVO product, Model model) {
 		product = service.read(product);
-		model.addAttribute("product", product);
+		model.addAttribute("product", product); // ★뷰는 단일 데이터만 불러오는게 아니기 때문에 프로덕트 가방에 있는 전체 데이터를 불러와야 하니까 product.getP_code처럼 하나의 데이터만 불러오는게 아니다.
 	}
 	
+	@GetMapping("/imgupload")
+	public void imgupload(ProductVO product, Model model) {
+		log.info(product);
+		model.addAttribute("p_code", product.getP_code()); //★ 넘기는건 상품 코드이다. 어디서? 프로덕트 가방에서! 그러나, 상세정보에서 해당 상품(단일 데이터)만 불러오려면 가방전체(product)가 아닌, 가방 내에서 해당하는 데이터(getP_code)로 불러오는 것이다.
+	}
+	
+	@PostMapping("/imgupload")
+	public void imgupload(HttpServletRequest request) {
+		DiskFileUpload upload = new DiskFileUpload(); // 파일 전송 컴포넌트 객체 생성
+		try {
+			List items = upload.parseRequest(request); // 웹브라우저 전송 객체 생성해서 업로드 컴포넌트에 전달
+			Iterator params = items.iterator(); // 반복자 생성, params변수로 반복생성 하도록 만든 상태
+			String imgpath = "C:\\myWorkSpace\\learnJsp\\MySpring\\src\\main\\webapp\\resources\\product"; // 저장 위치
+			String p_code = "";
+			//log.info(items.size());
+			while (params.hasNext()) { // form 객체가 있을 경우
+				FileItem item = (FileItem)params.next(); // 폼 형식 객체를 변수에 저장
+				if (item.isFormField()) { // 파일 형식이 아니라면 / 폼 내에 필드 타입 형식이 무엇이냐를 묻는 것
+					p_code = item.getString(); // 파일보다 먼저 반환 된다.
+				} else { // 바이너리 파일이라면
+					File imgfile = new File(imgpath + "/" + p_code + ".jpg"); // 파일객체 생성
+					item.write(imgfile); // 해당 경로에 파일 저장, 여기가 최종 작업
+				}
+			}
+		} catch (Exception e) {
+			System.out.println(e);
+		}
+	}
 	
 	
 	
