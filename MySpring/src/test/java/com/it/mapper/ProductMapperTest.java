@@ -43,11 +43,4 @@ public class ProductMapperTest {
 		log.info(product);
 	}
 	
-	
-	
-	
-	
-	
-	
-	
 }

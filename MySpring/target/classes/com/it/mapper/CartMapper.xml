@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+	PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+	"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.it.mapper.CartMapper">
+	<select id="getListMain" resultType="com.it.domain.CartmainVO"> <!-- 이 경로로 값을 리턴 받을거야 -->
+		select * from tblcartmain order by cm_code desc
+	</select>
+	<select id="getListSub" resultType="com.it.domain.CartsubVO"> <!-- 이 경로로 값을 리턴 받을거야 -->
+		select * from tblcartsub order by cs_code desc
+	</select>
+	
+	<select id="getListCart" resultType="com.it.domain.CartsubVO">
+		select * from tblcartsub where cm_code = #{cm_code}
+	</select>
+	
+	<select id="readMain" resultType="com.it.domain.CartmainVO">
+		select * from tblcartmain where cm_code = #{cm_code}
+	</select>
+	<select id="readMainid" resultType="com.it.domain.CartmainVO"> <!-- 사용자id(세션)물고 오기 위해 추가 -->
+		select * from tblcartmain where m_id = #{m_id}
+	</select>
+	<select id="readSub" resultType="com.it.domain.CartsubVO"> <!-- 관리자 전용 쿼리라고 생각해도 된다. -->
+		select * from tblcartsub where cs_code = #{cs_code}
+	</select>
+	<select id="readSubproduct" resultType="com.it.domain.CartsubVO"> <!-- 특정 상품 코드를 조회하기 위한(+중복검사 하기 위한) 쿼리 -->
+		select * from tblcartsub where cm_code = #{cm_code} and p_code = #{p_code}
+	</select>
+	
+	<insert id="insertMain">
+		insert into tblcartmain (m_id)
+		values (#{m_id})
+	</insert>
+	<insert id="insertSub">
+		insert into tblcartsub (cm_code, p_code, cs_cnt)
+		values (#{cm_code}, #{p_code}, #{cs_cnt})
+	</insert>
+	
+	<!-- cartmain은 업뎃이 필요 없다. -->
+	<update id="updateSub"> <!-- 장바구니를 떠올리면 상품(p_code)을 교체하는 경우는 없고 수량(cs_cnt)은 변하는것을 생각하면 된다. -->
+		update tblcartsub set cs_cnt = #{cs_cnt}
+		where cs_code = #{cs_code}
+	</update>
+	<delete id="deleteMain"> <!-- 영수증(?)만 삭제 -->
+		delete from tblcartmain where cm_code = #{cm_code} 		
+	</delete>
+	<delete id="deleteSub">
+		delete from tblcartsub where cs_code = #{cs_code}
+	</delete>
+	
+</mapper>

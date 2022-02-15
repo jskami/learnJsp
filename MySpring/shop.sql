@@ -177,23 +177,19 @@ select sum(p.p_price * os.os_cnt)
 		and p.p_code = os.p_code
 		and om.om_code = (select om_code from tblordermain where m_id = 'tiger' order by om_code desc limit 1);
 
--- 혼자 해보기
--- lion의 장바구니를 구해보자
-insert into tblordermain (m_id) values('lion');
-select * from tblordermain;
-insert into tblordersub (om_code, p_code, os_cnt)
-	select cm_code, p_code, cs_cnt from tblcartsub where cm_code = (select cm_code from tblcartmain where m_id = 'lion');
-	
-/* lion이 가장 최근에 구매한 내역(제한 없이 출력해보자) */
-select om_code from tblordermain where m_id = 'lion' order by om_code;
-	
-select om.om_code, om.m_id, os.p_code, os.os_cnt, p.p_price * os.os_cnt
-	from tblordermain om, tblordersub os, tblproduct p
-	where om.om_code = os.os_code
-		and p.p_code = os.p_code
-		and om.om_code = (select om_code from tblordermain where m_id = 'lion' order by om_code desc limit 1);
+desc tblmember;
+desc tblcartsub;
+desc tblcartmain;
+
+delete from tblordersub;
+delete from tblordermain;
+
+delete from tblcartsub;
+delete from tblcartmain;
+
+select * from tblcartmain;
+select * from tblcartsub;
 
 
-	
 
 

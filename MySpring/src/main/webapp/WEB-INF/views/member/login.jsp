@@ -8,13 +8,13 @@
                 <div class="container-fluid">
 
                     <!-- Page Heading -->
-                    <h1 class="h3 mb-2 text-gray-800">회원가입</h1>
+                    <h1 class="h3 mb-2 text-gray-800">로그인</h1>
                     <p class="mb-4"></p>
 
                     <!-- DataTales Example -->
                     <div class="card shadow mb-4">
                         <div class="card-header py-3">
-                            <h6 class="m-0 font-weight-bold text-primary"><a href="/member/list">가입 정보입력</a></h6>
+                            <h6 class="m-0 font-weight-bold text-primary"><a href="/member/list">사용자 정보 입력</a></h6>
                         </div>
                         <div class="card-body">
                             <div class="table-responsive">
@@ -35,6 +35,7 @@
                            <div class="form-group row">
                                <div class="col-sm-6 mb-3 mb-sm-0">
                                    <input type="submit" class="form-control" placeholder="제출">
+                                   <p><a href="/shop/list">장바구니 목록</a></p>
                                </div>
                            </div>
                        	</form>
