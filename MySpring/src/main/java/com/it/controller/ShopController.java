@@ -10,6 +10,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import com.it.domain.CartmainVO;
+import com.it.domain.CartmemberDTO;
 import com.it.domain.CartsubVO;
 import com.it.service.CartService;
 import com.it.service.MemberService;
@@ -51,17 +52,44 @@ public class ShopController {
 			CartmainVO cartmain = new CartmainVO(); 
 			cartmain.setM_id(m_id); // VO에 사용자의 세션정보를 저장
 			cartservice.cartinsert(cartmain, cartsub); // 서비스계층 호출
-			return "redirect:/shop/cartinfo"; // redirect: 의 의미는 컨트롤러로 다시 돌아오라는 호출의 의미이다.
+			return "redirect:/shop/cartinfo"; // redirect: 의 의미는 컨트롤러로 다시 돌아오라는 호출의 의미이다.(컨트롤러를 거쳐서 진행)
 		} else { 
-			return "redirect:/member/login";
+			return "redirect:/member/login"; // 로그인 상태가 아니라면 항상 이렇게 돌려주면 된다.
 		}
 	}
 	
 	@GetMapping("/cartinfo")
-	public void cartinfo() {
-		// 세션아이디를 이용해서 cm_code를 조회해야 함
-		// cm_code를 이용해서 getListCart를 조회해서 리스트 출력
-		// cartinfo.jsp에 넘긴다.
+	public String cartinfo(HttpSession session, Model model) {
+		// 로그인 상태 확인 (제어구조(세션변수를 확인)를 먼저 만들어보자)
+		String m_id = (String)session.getAttribute("m_id");
+		String m_name = (String)session.getAttribute("m_name");
+		if (m_id != null) {
+		// 세션아이디를 이용해서 cm_code를 조회해야 함 / 로그인이 되어있다는 가정 하에 진행 
+			CartmainVO cartmain = new CartmainVO();
+			cartmain.setM_id(m_id);
+			cartmain = cartservice.readMainid(cartmain);
+			if (cartmain != null) { // 로그인은 되었는데 cartmain(장바구니)이 있을수도 있고 없을 수도 있으니 확인해야 한다.
+				// int cm_code = cartmain.getCm_code(); // 로그인된 사용자의 아이디를 사용하는 cartmain의 cm_code / 필요없어졌다.
+				// cartservice.getListCart(cartmain).forEach(cartsub -> log.info(cartsub)); // 디버깅용으로 쓴거니까 주석
+				
+				model.addAttribute("list", cartservice.getListCartDetail(cartmain));
+				
+				CartmemberDTO carttotal = cartservice.getCartTotal(cartmain);// 총 금액'만'들어있다.
+				carttotal.setCm_code(cartmain.getCm_code());
+				cartmain.setM_id(m_id);
+				cartmain.setM_id(m_name);
+				model.addAttribute("carttotal", carttotal); // 총 금액 데이터를 담을 그릇은 만든상태인데, 정작 데이터가 없다. 그래서 나머지 정보를 넘겨줄 방법을 찾아보자
+				log.info("장바구니 내용 있음"); // cm_code를 통해 cartSub를 조회할거야
+			} else {
+				log.info("장바구니 내용 없음");
+			}
+			// cm_code를 이용해서 getListCart를 조회해서 리스트 출력
+			log.info("로그인 상태");
+			return "/shop/cartinfo"; // 현재 페이지로(자기 자신) 이동(반드시 작성) 여기는 redirect를 쓰면 안된다. 이미 위에서 진행 되었기 때문
+		} else {
+			log.info("로그아웃 상태");
+			return "/member/login"; // 컨트롤러의 메서드를 호출 한 뒤 jsp로 이동, redirect 생략시 jsp페이지로 바로 이동(컨트롤러 안거치고), 컨트롤러 통과 여부를 잘 모르겠으면 redirect를 그냥 쓰는게 낫다.
+		}	// 리다이렉트를 하면 다시 또 계산을 하니까 문제가 발생하겠지? 그래서 로그인 하고 페이지 이동할 때 리다이렉트(두 번 일하지말라고)안쓰는거야
 		
 	}
 	

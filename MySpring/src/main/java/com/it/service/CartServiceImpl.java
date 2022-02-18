@@ -1,9 +1,13 @@
 package com.it.service;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.it.domain.CartdetailDTO;
 import com.it.domain.CartmainVO;
+import com.it.domain.CartmemberDTO;
 import com.it.domain.CartsubVO;
 import com.it.mapper.CartMapper;
 
@@ -38,6 +42,27 @@ public class CartServiceImpl implements CartService {
 				mapper.updateSub(cs);
 			}
 		}
+	}
+	
+	@Override
+	public CartmainVO readMainid(CartmainVO cartmain) {
+		cartmain = mapper.readMainid(cartmain); // 특정 사용자 아이디로 조회
+		return cartmain;
+	}
+	
+	@Override
+	public List<CartsubVO> getListCart(CartmainVO cartmain) {
+		return mapper.getListCart(cartmain);
+	}
+	
+	@Override
+	public List<CartdetailDTO> getListCartDetail(CartmainVO cartmain) {
+		return mapper.getListCartDetail(cartmain);
+	}
+	
+	@Override
+	public CartmemberDTO getCartTotal(CartmainVO cartmain) {
+		return mapper.getCartTotal(cartmain);
 	}
 	
 }

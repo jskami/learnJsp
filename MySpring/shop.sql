@@ -190,6 +190,3 @@ delete from tblcartmain;
 select * from tblcartmain;
 select * from tblcartsub;
 
-
-
-

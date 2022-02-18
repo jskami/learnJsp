@@ -2,7 +2,9 @@ package com.it.mapper;
 
 import java.util.List;
 
+import com.it.domain.CartdetailDTO;
 import com.it.domain.CartmainVO;
+import com.it.domain.CartmemberDTO;
 import com.it.domain.CartsubVO;
 
 public interface CartMapper {
@@ -11,7 +13,11 @@ public interface CartMapper {
 	
 	public List<CartsubVO> getListsub();
 	
-	public List<CartsubVO> getListCart();
+	public List<CartsubVO> getListCart(CartmainVO cartmain);
+	
+	public List<CartdetailDTO> getListCartDetail(CartmainVO cartmain);
+	
+	public CartmemberDTO getCartTotal(CartmainVO cartmain); // cart 총 금액
 	
 	public CartmainVO readMain(CartmainVO cartmain);
 	

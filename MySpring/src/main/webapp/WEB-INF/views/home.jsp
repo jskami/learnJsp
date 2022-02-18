@@ -9,10 +9,6 @@
 <body>
 <p><a href="/member/login">로그인</a></p>
 <p><a href="/member/logout">로그아웃</a></p>
-<p><a href="/member/list">사용자 리스트</a></p>
-<p><a href="/board/list">게시판 리스트</a></p>
-<p><a href="/product/list">상품 리스트</a></p>
-<p><a href="/shop/list">장바구니 리스트</a></p>
 
 <h1>
 	Hello world!  
@@ -21,6 +17,11 @@
 <P>  The time on the server is ${serverTime}. </P>
 <p> 사용자 ID : ${m_id}</p>
 <p> 사용자 NAME : ${m_name}</p>
+
+<p><a href="/member/list">사용자 리스트</a></p>
+<p><a href="/board/list">게시판 리스트</a></p>
+<p><a href="/product/list">상품 리스트</a></p>
+<p><a href="/shop/list">장바구니 리스트</a></p>
 
 </body>
 </html>
