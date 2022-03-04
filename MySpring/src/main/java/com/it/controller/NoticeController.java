@@ -8,6 +8,8 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import com.it.domain.NoticeVO;
+import com.it.domain.PageDTO;
+import com.it.domain.PageViewDTO;
 import com.it.service.NoticeService;
 
 import lombok.Setter;
@@ -22,8 +24,11 @@ public class NoticeController {
 	private NoticeService service;
 	
 	@GetMapping("/list")
-	public void list(Model model) { // list가 현재 자바 프로그램 내에서만 볼 수 있는 상태이기 때문에, 이녀석을 물고와서 웹으로 뿌려줘야 사용자도 list를 볼 수 있는데 이 역할을 해주는 녀석이 Model(모델)이다.
-		model.addAttribute("list", service.getList());
+	public void list(Model model, PageDTO page) { // list가 현재 자바 프로그램 내에서만 볼 수 있는 상태이기 때문에, 이녀석을 물고와서 웹으로 뿌려줘야 사용자도 list를 볼 수 있는데 이 역할을 해주는 녀석이 Model(모델)이다.
+		model.addAttribute("list", service.getList(page));
+		int total = service.getTotalCount();
+		PageViewDTO pageview = new PageViewDTO(page, total);
+		model.addAttribute("pageview", pageview);
 	}
 	
 	@GetMapping("/insert")
@@ -43,31 +48,33 @@ public class NoticeController {
 	}
 	
 	@GetMapping("/view")
-	public void view(NoticeVO notice, Model model) {
+	public void view(NoticeVO notice, Model model, PageDTO page) {
 		log.info("--------읽기 전--------");
 		log.info(notice);
 		notice = service.read(notice);
 		log.info("--------읽은 후--------");
 		log.info(notice);
 		model.addAttribute("notice", notice);
+		model.addAttribute("page", page);
 	}
 	
 	@GetMapping("/update")
-	public void update(NoticeVO notice, Model model) {
+	public void update(NoticeVO notice, Model model, PageDTO page) {
 		log.info("---------업데이트를 위한 번호--------");
 		log.info(notice);
 		notice = service.read(notice);
 		log.info("---------업데이트를 위한 번호--------");
 		log.info(notice);
 		model.addAttribute("notice", notice);
+		model.addAttribute("page", page);
 	}
 	
 	@PostMapping("/update")
-	public String update(NoticeVO notice) {
+	public String update(NoticeVO notice, PageDTO page) {
 		log.info("-------업데이트 데이터-------");
 		log.info(notice);
 		service.update(notice);
-		return "redirect:/notice/view?n_num=" + notice.getN_num();
+		return "redirect:/notice/view?n_num=" + notice.getN_num() + "&pageNum=" + page.getPageNum();
 	}
 
 	@GetMapping("/delete")

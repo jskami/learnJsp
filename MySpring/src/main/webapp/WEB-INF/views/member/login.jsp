@@ -35,7 +35,7 @@
                            <div class="form-group row">
                                <div class="col-sm-6 mb-3 mb-sm-0">
                                    <input type="submit" class="form-control" placeholder="제출">
-                                   <p><a href="/shop/list">장바구니 목록</a></p>
+                                   <p><a href="/shop/list">장바구니 상세정보</a></p>
                                </div>
                            </div>
                        	</form>

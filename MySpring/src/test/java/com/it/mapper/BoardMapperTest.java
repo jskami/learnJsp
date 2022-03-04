@@ -1,12 +1,12 @@
 package com.it.mapper;
 
-import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
 import com.it.domain.BoardVO;
+import com.it.domain.PageDTO;
 
 import lombok.Setter;
 import lombok.extern.log4j.Log4j;
@@ -20,9 +20,10 @@ public class BoardMapperTest {
 	private BoardMapper mapper; // 어노테이션세터는 생성하지 않았지만 객체 역할을 할 수 있도록 설정 해주는 것이다.
 								// BoardMapper는 인터페이스 파일인데 이녀석을 mapper라는 이름의 객체로 만들어서 사용하는 것이다.
 		
-	@Test
+	//@Test
 	public void testGetList() { // 메서드를 만들자 (데이터를 가져오는 당위성 테스트 메서드)
-		mapper.getList().forEach(board -> log.info(board)); // (람다식 문법으로 출력, 보드 자리는 아무 이름을 갖다 붙여도 됨, 로그는 출력 기능을 간소화, foreach를 통해 하나씩 하나씩 작업해서 한줄로 표현하겠다!-의 의미)
+		PageDTO page = new PageDTO(2,10);
+		mapper.getList(page).forEach(board -> log.info(board)); // (람다식 문법으로 출력, 보드 자리는 아무 이름을 갖다 붙여도 됨, 로그는 출력 기능을 간소화, foreach를 통해 하나씩 하나씩 작업해서 한줄로 표현하겠다!-의 의미)
 	}
 	
 	//@Test

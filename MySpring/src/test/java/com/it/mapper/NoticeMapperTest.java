@@ -1,5 +1,7 @@
 package com.it.mapper;
 
+import static org.springframework.test.web.servlet.result.MockMvcResultHandlers.log;
+
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -7,6 +9,7 @@ import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
 import com.it.domain.NoticeVO;
+import com.it.domain.PageDTO;
 
 import lombok.Setter;
 import lombok.extern.log4j.Log4j;
@@ -21,7 +24,8 @@ public class NoticeMapperTest {
 	
 	@Test
 	public void testGetList() {
-		mapper.getList().forEach(notice -> log.info(notice));
+		PageDTO page = new PageDTO(2,10);
+		mapper.getList(page).forEach(notice -> log.info(notice));
 	}
 	
 	//@Test

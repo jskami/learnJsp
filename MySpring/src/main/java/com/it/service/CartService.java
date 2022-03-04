@@ -19,4 +19,10 @@ public interface CartService {
 	
 	public CartmemberDTO getCartTotal(CartmainVO cartmain);
 	
+	public void updateSub(CartsubVO cartsub);
+	
+	public void deleteSub(CartsubVO cartsub);
+
+	public void deleteSuball(CartmainVO cartmain);
+	
 }

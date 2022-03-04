@@ -12,8 +12,11 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import com.it.domain.CartmainVO;
 import com.it.domain.CartmemberDTO;
 import com.it.domain.CartsubVO;
+import com.it.domain.OrdermainVO;
+import com.it.domain.OrdermemberDTO;
 import com.it.service.CartService;
 import com.it.service.MemberService;
+import com.it.service.OrderService;
 import com.it.service.ProductService;
 
 import lombok.Setter;
@@ -32,6 +35,9 @@ public class ShopController {
 	
 	@Setter(onMethod_ = @Autowired)
 	private CartService cartservice;
+	
+	@Setter(onMethod_ = @Autowired)
+	private OrderService orderservice;
 	
 	
 	
@@ -79,6 +85,7 @@ public class ShopController {
 				cartmain.setM_id(m_id);
 				cartmain.setM_id(m_name);
 				model.addAttribute("carttotal", carttotal); // 총 금액 데이터를 담을 그릇은 만든상태인데, 정작 데이터가 없다. 그래서 나머지 정보를 넘겨줄 방법을 찾아보자
+				model.addAttribute("cm_code", cartmain.getCm_code()); // cm_code를 전달하기 위해(cartinfo의 삭제를 위해)
 				log.info("장바구니 내용 있음"); // cm_code를 통해 cartSub를 조회할거야
 			} else {
 				log.info("장바구니 내용 없음");
@@ -93,6 +100,55 @@ public class ShopController {
 		
 	}
 	
+	@PostMapping("/cartupdate")
+	public String cartupdate(CartsubVO cartsub) { // 현재 위치에서 머무르지 않고 처리한 후 cartinfo로 넘어가면 돼
+		cartservice.updateSub(cartsub); // 상세코드와 수량이 넘어가도록 설정
+		return "redirect:/shop/cartinfo";
+	}
+	
+	@GetMapping("/cartdelete")
+	public String cartdelete(CartsubVO cartsub) { // 삭제 역시 현재 위치에 머무르지 않고 처리하는데.. 일단 테스트니까 보이드로 확인해보자
+		cartservice.deleteSub(cartsub);
+		return "redirect:/shop/cartinfo";
+	}
+	
+	@GetMapping("/cartdeleteall")
+	public String cartdeleteall(CartmainVO cartmain) {
+		cartservice.deleteSuball(cartmain);
+		return "redirect:/shop/cartinfo";
+	}
+	
+	@GetMapping("/orderinfo")
+	public String orderinfo(HttpSession session, CartmainVO cartmain, Model model) {
+		String m_id = (String)session.getAttribute("m_id");
+		String m_name = (String)session.getAttribute("m_name");
+		if (m_id != null) {
+			
+		cartmain.setM_id(m_id);
+		OrdermainVO ordermain = orderservice.orderproc(cartmain); // om_code 획득, orderproc를 호출하여 cm_code 값을 넘김
+		
+		model.addAttribute("list", orderservice.getListOrderDetail(ordermain));
+		
+		OrdermemberDTO ordertotal = orderservice.getOrderTotal(ordermain);
+		ordertotal.setOm_code(ordermain.getOm_code());
+		ordermain.setM_id(m_id);
+		ordermain.setM_id(m_name);
+		
+		model.addAttribute("ordertotal", ordertotal); // 총 금액 데이터를 담을 그릇은 만든상태인데, 정작 데이터가 없다. 그래서 나머지 정보를 넘겨줄 방법을 찾아보자
+		model.addAttribute("om_code", ordermain.getOm_code());
+		
+		log.info("로그인 상태");
+		return "/shop/orderinfo";
+	} else {
+		log.info("로그아웃 상태");
+		return "/member/login";
+	}
+	
+		
+		
+		
 	
 	
+	
+	}
 }

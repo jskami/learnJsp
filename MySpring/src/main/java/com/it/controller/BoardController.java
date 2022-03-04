@@ -8,6 +8,8 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import com.it.domain.BoardVO;
+import com.it.domain.PageDTO;
+import com.it.domain.PageViewDTO;
 import com.it.service.BoardService;
 
 import lombok.Setter;
@@ -22,11 +24,19 @@ public class BoardController {
 	private BoardService service;
 	
 	@GetMapping("/list") // ex) http://주소:8080/board/list <-요기 (하위구조)
-	public void list(Model model) { // 웹에서 처리할 이름(반드시 동일해야 할 필욘 없지만 편의상 동일하게 하는게 좋겠지?), 웹 브라우저로 전달하기 위해 만드는중 / 모델 객체..왜 뜬금 등장?
+	public void list(Model model, PageDTO page/*, @RequestParam("user") String user, @RequestParam("age") int age*/) { // 웹에서 처리할 이름(반드시 동일해야 할 필욘 없지만 편의상 동일하게 하는게 좋겠지?), 웹 브라우저로 전달하기 위해 만드는중 / 모델 객체..왜 뜬금 등장? / @RequestParam(변수명 지정) 타입 변수명 / 괄호 안의 파란색 유저는 웹 브라우저에서 사용하는 변수명이고 타입 뒤에 갈색 유저는 클래스 내에서 쓰는 변수명이다.
 		                            // Model 객체 : VO객체를 저장해서 jsp 파일로 전송, 운반형, 내장객체, 테이블에 있는 자료를 jsp파일로 넘겨주는 역할, 현재 VO객체는 비어있는 상태이다.
 									// 현재는 리스트에 줄게 없으니 이대로 두고 호출만 해보자! - 톰캣 실행!
 		// list.jsp에 데이터를 전달해야 함, 오직 Model만이 데이터 전달이 가능하다!
-		model.addAttribute("list", service.getList()); // getList로 조회한 모든 내용을 list변수로 전달, service.getList()는 다중데이터이다.
+		model.addAttribute("list", service.getList(page)); // getList로 조회한 모든 내용을 list변수로 전달, service.getList()는 다중데이터이다.
+		int total = service.getTotalCount();  // 전체 레코드 개수 호출
+		PageViewDTO pageview = new PageViewDTO(page, total);
+		model.addAttribute("pageview", pageview);
+//		log.info("=========구분선=========");
+//		log.info(user);
+//		log.info(age + 1); // age에 +1이 연산되는지 확인해보자.
+//		model.addAttribute("user", user);
+//		model.addAttribute("age", age); 
 	}
 
 	@GetMapping("/insert")
@@ -48,31 +58,33 @@ public class BoardController {
 	}
 	
 	@GetMapping("/view")
-	public void view(BoardVO board, Model model) { // 번호를 빈 가방(보드)에 넘길꺼야
+	public void view(BoardVO board, Model model, PageDTO page) { // 번호를 빈 가방(보드)에 넘길꺼야
 		log.info("----------읽기 전---------");
 		log.info(board); // 디버깅 하는 절차야 rg?
-		board = service.read(board); // ()에 글 번호를 넘기는 것 보다는 글 번호가 이미 담겨있는 board가방을 넘기는게 좋다. 
+		board = service.read(board); // 번호만 사용하여 조회, ()에 글 번호를 넘기는 것 보다는 글 번호가 이미 담겨있는 board가방을 넘기는게 좋다. 
 		log.info("----------읽은 후---------");
 		log.info(board);
 		model.addAttribute("board", board); // 앞의 board는 변수명, 뒤의 board는 글 번호가 담긴 빈 가방(위에서 읽어낸 board)
+		model.addAttribute("page", page); // 리스트 외에는 PageDTO의 page만 넘긴다고 생각하면 된다.
 	}
 
 	@GetMapping("/update") // 여기는 업데이트 하기 전 데이터를 읽어서 보여주는 단계이고, 업데이트 메서드는 포스트매핑으로 따로 만들어야 한다.
-	public void update(BoardVO board, Model model) { // 모델 객체 위치는 앞,뒤 상관없다.
+	public void update(BoardVO board, Model model, PageDTO page) { // 모델 객체 위치는 앞,뒤 상관없다.
 		log.info("----------업데이트를 위한 번호---------");
 		log.info(board);
 		board = service.read(board); // 번호만 사용하여 조회, 아직 업데이트를 하는게 아니라 사용자가 변경하기전 데이터를 읽어서 띄우는 것 뿐이야.
 		log.info("----------업데이트를 위한 데이터---------");
 		log.info(board);
 		model.addAttribute("board", board);
+		model.addAttribute("page", page);
 	}
 	
 	@PostMapping("/update")
-	public String update(BoardVO board) { // 실제 업데이트 처리 메서드를 만들거고, 보이드는 디버깅때문에 쓰는거니까 제대로 출력되면 보이드를 지우고 스트링으로 바꿔줘야해!
+	public String update(BoardVO board, PageDTO page) { // 실제 업데이트 처리 메서드를 만들거고, 보이드는 디버깅때문에 쓰는거니까 제대로 출력되면 보이드를 지우고 스트링으로 바꿔줘야해!
 		log.info("----------업데이트 데이터---------");
 		log.info(board);
 		service.update(board); // 수정 진행
-		return "redirect:/board/view?b_num=" + board.getB_num(); // 수정 후 어디로 갈거야? => 뷰로 갈거야, 근데 번호를 같이 넘겨줘야 수정한 글을 보여주지!
+		return "redirect:/board/view?b_num=" + board.getB_num() + "&pageNum=" + page.getPageNum(); // 수정 후 어디로 갈거야? => 뷰로 갈거야, 근데 번호를 같이 넘겨줘야 수정한 글을 보여주지!
 	}
 	
 	@GetMapping("/delete")

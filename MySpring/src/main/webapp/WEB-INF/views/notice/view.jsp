@@ -15,7 +15,7 @@
                     <!-- DataTales Example -->
                     <div class="card shadow mb-4">
                         <div class="card-header py-3">
-                            <h6 class="m-0 font-weight-bold text-primary"><a href="/notice/list">게시판 리스트</a></h6>
+                            <h6 class="m-0 font-weight-bold text-primary"><a href="/notice/list?pageNum=${page.pageNum}">게시판 리스트</a></h6>
                         </div>
                         <div class="card-body">
                             <div class="table-responsive">
@@ -52,7 +52,7 @@
                            </div>
                            <div class="form-group row">
                                <div class="col-sm-6 mb-3 mb-sm-0">
-                                   <a href="/notice/update?n_num=${notice.n_num}"><button>수정</button></a>
+                                   <a href="/notice/update?n_num=${notice.n_num}&pageNum=${page.pageNum}"><button>수정</button></a>
                                    &nbsp;&nbsp;&nbsp;
                                    <a href="/notice/delete?n_num=${notice.n_num}"><button>삭제</button></a>
                                </div>

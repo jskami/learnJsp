@@ -17,28 +17,28 @@ import lombok.extern.log4j.Log4j;
 @Log4j
 @Service
 public class CartServiceImpl implements CartService {
-
+	
 	@Setter(onMethod_ = @Autowired)
 	private CartMapper mapper;
 	
 	@Override
 	public void cartinsert(CartmainVO cartmain, CartsubVO cartsub) {
 		CartmainVO cm = new CartmainVO();
-		cm = mapper.readMainid(cartmain); // 세션 아이디를 인수로 조회하여 결과 반환, 있으면 레코드 1개가 존재할 것이고, 없으면 null이 반환 / 상품이 아닌 장바구니를 한 번이라도 담았다는 흔적을 찾기 위함이다.
-		if (cm == null) { // cartmain에 해당사용자의 레코드 1개를 신규 생성해야 함
-			mapper.insertMain(cartmain); // 상품과 관계없이 cartmain에 id하나를 담아야 한다.
-			// cm_code가 생성되었으나 조회해야 알 수 있다. 조회 쿼리 필요함
-			cm = mapper.readMainid(cartmain); // 해당 사용자로 신규 추가 후 조회, 몰랐던 cm_code를 이제 알 수 있게 되었다.
-			cartsub.setCm_code(cm.getCm_code());  // 조회한 신규cm_code를 cartsub에 추가 
-			mapper.insertSub(cartsub); // 이건 실패! 상품정보는 들어와있지만 27라인에서 조회한 cm이 없다. 그래서 28라인에서 cm을 cartsub에 담아준다.  
-		} else { // 이미 최소 1개는 카트에 상품이 존재한다는 의미
-			cartsub.setCm_code(cm.getCm_code());  // 조회한 신규cm_code를 cartsub에 추가
-			CartsubVO cs = new CartsubVO(); // cs에는 모든 정보가 담겨있어야 해
+		cm = mapper.readMainid(cartmain); //세션 아이디를 인수로 조회하여 결과 반환, 있으면 레코드1개, 없으면 null 
+		if (cm == null) { //cartmain 에 해당사용자의 레코드 1개를 신규생성해야 함
+			mapper.insertMain(cartmain);  //cartmain 에 레코드 추가
+			//cm_code 가 생성되었으나 조회해야 알 수 있음
+			cm = mapper.readMainid(cartmain); //해당사용자로 신규 추가 후 조회
+			cartsub.setCm_code(cm.getCm_code());  //조회한 신규cm_code를 cartsub에 추가
+			mapper.insertSub(cartsub);
+		} else { //이미 최소 1개는 카트에 상품이 존재한다는 의미
+			cartsub.setCm_code(cm.getCm_code());  //조회한 신규cm_code를 cartsub에 추가
+			CartsubVO cs = new CartsubVO();
 			cs = mapper.readSubproduct(cartsub);
-			if (cs == null) { // 논리 : 선택한 상품이 장바구니에 없다면 insert
+			if (cs == null) { //선택한 상품이 장바구니에 없다면
 				mapper.insertSub(cartsub);
-			} else { // 존재하면 기존상품에 더해서 치환하라
-				cs.setCs_cnt(cs.getCs_cnt() + cartsub.getCs_cnt()); // 기존에 담겨진 상품 + 신규로 담은 상품 
+			} else { //존재한다면 덧셈하여 치환
+				cs.setCs_cnt(cs.getCs_cnt() + cartsub.getCs_cnt());  //기존 + 신규
 				mapper.updateSub(cs);
 			}
 		}
@@ -46,7 +46,7 @@ public class CartServiceImpl implements CartService {
 	
 	@Override
 	public CartmainVO readMainid(CartmainVO cartmain) {
-		cartmain = mapper.readMainid(cartmain); // 특정 사용자 아이디로 조회
+		cartmain = mapper.readMainid(cartmain); //특정 사용자 아이디로 조회
 		return cartmain;
 	}
 	
@@ -65,4 +65,27 @@ public class CartServiceImpl implements CartService {
 		return mapper.getCartTotal(cartmain);
 	}
 	
+	@Override
+	public void updateSub(CartsubVO cartsub) {
+		mapper.updateSub(cartsub);
+	}
+	
+	@Override
+	public void deleteSub(CartsubVO cartsub) {
+		mapper.deleteSub(cartsub);
+		CartmainVO cartmain = new CartmainVO();
+		cartmain.setCm_code(cartsub.getCm_code());
+		List<CartsubVO> tmp = mapper.getListCart(cartmain);
+		//log.info(tmp.size());
+		if (tmp.size() == 0) { //장바구니에 상품이 1개도 없음
+			mapper.deleteMain(cartmain); //cartmain 삭제
+		}
+	}
+	
+	@Override
+	public void deleteSuball(CartmainVO cartmain) {
+		mapper.deleteSuball(cartmain);  //장바구니 상세 삭제(cm_code 활용)
+		mapper.deleteMain(cartmain);    //장바구니 메인 삭제(cm_code 활용)
+	}
+
 }

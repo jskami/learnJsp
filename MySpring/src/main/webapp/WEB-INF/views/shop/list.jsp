@@ -16,8 +16,8 @@
                     <!-- DataTales Example -->
                     <div class="card shadow mb-4">
                         <div class="card-header py-3">
-                            <h6 class="m-0 font-weight-bold text-primary"><a href="/product/insert">상품등록</a></h6>
-                            <h6 class="m-0 font-weight-bold text-primary"><a href="/shop/cartinfo">장바구니목록</a></h6>
+                            <h6 class="m-0 font-weight-bold text-primary"><a href="/product/insert">상품등록</a> |
+                            <a href="/shop/cartinfo">장바구니목록</a></h6>
                         </div>
                         <div class="card-body">
                             <div class="table-responsive">

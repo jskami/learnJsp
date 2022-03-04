@@ -4,7 +4,8 @@
 	"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.it.mapper.BoardMapper">
 	<select id="getList" resultType="com.it.domain.BoardVO"> <!-- 이 경로로 값을 리턴 받을거야 -->
-		select * from tblboard order by b_num desc <!-- 세미콜론 안써도 돼 + 넘겨받는 값이 없으니까 #을 쓸 필요도 없지! -->
+		select * from tblboard order by b_num desc 
+		limit #{pageAmount} offset ${(pageNum-1)*pageAmount} <!-- 세미콜론 안써도 돼 + 넘겨받는 값이 없으니까 #을 쓸 필요도 없지! -->
 	</select>
 	<!-- 보드맵퍼에서 사용가능한 태그를 알아보자! -->
 	<insert id="insert">
@@ -23,5 +24,9 @@
 	<delete id="delete">
 		delete from tblboard where b_num = #{b_num}
 	</delete>
+	
+	<select id="getTotalCount" resultType="int">
+		select count(b_num) from tblboard
+	</select>
 	
 </mapper>

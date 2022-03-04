@@ -3,10 +3,11 @@ package com.it.service;
 import java.util.List;
 
 import com.it.domain.BoardVO;
+import com.it.domain.PageDTO;
 
 public interface BoardService {
 
-	public List<BoardVO> getList(); // 전체 레코드 조회, 리스트로 받을거야, 여러개의 레코드가 필요하지! 제네릭 문법으로 메서드를 만들어보자
+	public List<BoardVO> getList(PageDTO page); // 전체 레코드 조회, 리스트로 받을거야, 여러개의 레코드가 필요하지! 제네릭 문법으로 메서드를 만들어보자
 
 	public void insert(BoardVO board); // 레코드 입력
 
@@ -16,5 +17,9 @@ public interface BoardService {
 	
 	public void delete(BoardVO board); // 레코드 삭제(딜리트), 개발사마다 요구는 다르겠지만 생략 가능하다. 그래도 안전하게 하는게 좋겠지?
 
-	// 이 다섯 개의 메서드를 ServiceImpl에서 구현해줘야 한다.
+	public int getTotalCount();
+	
+	// 이 여섯 개의 메서드를 ServiceImpl에서 구현해줘야 한다.
+	
+	
 }

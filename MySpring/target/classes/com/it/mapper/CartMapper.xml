@@ -61,5 +61,8 @@
 	<delete id="deleteSub">
 		delete from tblcartsub where cs_code = #{cs_code}
 	</delete>
+	<delete id="deleteSuball">
+		delete from tblcartsub where cm_code = #{cm_code} <!-- 이 cm_code를 가진 장바구니를 모두 삭제한다.-의 의미 -->
+	</delete>
 	
 </mapper>

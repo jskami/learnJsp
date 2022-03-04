@@ -7,6 +7,7 @@ import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
 import com.it.domain.NoticeVO;
+import com.it.domain.PageDTO;
 
 import lombok.Setter;
 import lombok.extern.log4j.Log4j;
@@ -21,7 +22,8 @@ public class NoticeServiceTest {
 	
 	@Test
 	public void testGetList() {
-		service.getList().forEach(notice -> log.info(notice));
+		PageDTO page = new PageDTO();
+		service.getList(page).forEach(notice -> log.info(notice));
 	}
 		
 	//@Test

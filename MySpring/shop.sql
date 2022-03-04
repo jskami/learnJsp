@@ -79,7 +79,7 @@ alter table tblcartsub auto_increment=1001; -- 상품번호를 1001부터 시작
 /* 주문 main */
 create table tblordermain (
 	om_code int not null primary key auto_increment,
-	m_id varchar(50) not null, -- FK, 주문자가 필요하지만, 카트메인에 있다. 그걸 포링키로 끌고오기보다는 그래도 신규로 정해주는게 좋다.
+	m_id varchar(50) not null, -- FK, 주문자가 필요하지만, 카트메인에 있다. 그걸 포링키로 끌고오기보다는 그래도 신규로 정해주는게 좋다. 
 	om_rdate datetime not null default sysdate(),
 	om_udate datetime not null default sysdate(),
 	foreign key (m_id) references tblmember(m_id)
@@ -189,4 +189,30 @@ delete from tblcartmain;
 
 select * from tblcartmain;
 select * from tblcartsub;
+
+select * from tblordermain;
+select * from tblordersub;
+
+-- 레코드 복사
+insert into tblboard (b_subject, b_contents, b_name)
+	select b_subject, b_contents, b_name from tblboard;
+	
+insert into tblnotice (n_subject, n_contents, n_name)
+	select n_subject, n_contents, n_name from tblnotice;
+	
+select count(*) from tblboard;
+
+select * from tblboard order by b_num desc limit 10 offset 20;
+
+/*======== 22.03.04 프로젝트용 테이블 설계 =========*/
+
+/* 관리자 테이블 */
+create table tbladmin (
+	a_id VARCHAR(50) NOT NULL PRIMARY KEY, -- 아이디
+	a_passwd VARCHAR(50) NOT NULL, -- 비번
+	a_name VARCHAR(50) NOT NULL, -- 성명
+	a_rdate DATETIME NOT NULL DEFAULT SYSDATE(), -- 최초 입력일과 수정일을 설정하는게 좋다.	
+	a_udate DATETIME NOT NULL DEFAULT SYSDATE() -- 수정일
+);
+insert into tbladmin (a_id, a_passwd, a_name) values ('admin','1234','관리자');
 
