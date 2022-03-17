@@ -1,25 +1,50 @@
 <?xml version="1.0" encoding="UTF-8" ?>
+
 <!DOCTYPE mapper
 	PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+	
 <mapper namespace="com.it.mapper.ProductMapper">
-	<select id="getList" resultType="com.it.domain.ProductVO"> <!-- 이 경로로 값을 리턴 받을거야 -->
-		select * from tblproduct order by p_code desc <!-- 세미콜론 안써도 돼 + 넘겨받는 값이 없으니까 #을 쓸 필요도 없지! -->
+
+	<select id="getList" resultType="com.it.domain.ProductVO">
+	<!-- 게시판에 있는 내용을 읽어드리겠다는 method
+		resultType에는 내가 읽을 파일의 경로설정을 해준다. -->
+		select * from tblproduct order by p_code desc
 	</select>
-	<!-- 멤버맵퍼에서 사용가능한 태그를 알아보자! -->
+
+	<!-- Create -->
+	
 	<insert id="insert">
 		insert into tblproduct (p_name, p_price)
 		values (#{p_name}, #{p_price})
+	<!-- #{ } php에서 ?에 해당하는것들. 
+		 #{ }에는 BoardMapper.java에서 productVO.java를 product에 담아 insert로 넘긴다고
+		 선언해 두었기 때문에, insert 구문에는 ProductVO에서 선언한 매개변수가 들어간다. 
+		 다만 m_id은 A.I설정해 두었고, date도 자동설정이기 때문에 나머지 3개변수만 씀-->
 	</insert>
+	
+	
+	<!-- Read (레코드 하나를 검출하여 ProductVO형식으로 값을 리턴함) -->
 	<select id="read" resultType="com.it.domain.ProductVO">
-		select * from tblproduct where p_code = #{p_code} 
+		select * from tblproduct where p_code = #{p_code}
 	</select>
+	
+	<!-- Read는 id한가지 값만 불러오므로 로그인시 아이디와 비밀번호를 확인할 쿼리 작성 -->
+	<!-- 	
+	<select id="auth" resultType="com.it.domain.ProductVO">
+		select * from tblmembeer where m_id = #{m_id} and m_passwd = #{m_passwd}
+	</select>	 -->
+	
+
+	<!-- Update 반환값 없음.-->
 	<update id="update">
 		update tblproduct set p_name = #{p_name}, p_price = #{p_price}
 		where p_code = #{p_code}
 	</update>
+	
+	<!-- Delete -->
 	<delete id="delete">
 		delete from tblproduct where p_code = #{p_code}
-	</delete>
+	</delete>		
 	
 </mapper>

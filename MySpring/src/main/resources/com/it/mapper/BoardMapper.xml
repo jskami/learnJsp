@@ -1,32 +1,50 @@
 <?xml version="1.0" encoding="UTF-8" ?>
+
 <!DOCTYPE mapper
 	PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper namespace="com.it.mapper.BoardMapper">
-	<select id="getList" resultType="com.it.domain.BoardVO"> <!-- 이 경로로 값을 리턴 받을거야 -->
-		select * from tblboard order by b_num desc 
-		limit #{pageAmount} offset ${(pageNum-1)*pageAmount} <!-- 세미콜론 안써도 돼 + 넘겨받는 값이 없으니까 #을 쓸 필요도 없지! -->
-	</select>
-	<!-- 보드맵퍼에서 사용가능한 태그를 알아보자! -->
-	<insert id="insert">
-		insert into tblboard (b_subject, b_name, b_contents) <!-- 줄 바꿔 써도 상관없다. (DB 테이블에 있는 필드 이름) -->
-		values (#{b_subject}, #{b_name}, #{b_contents}) <!-- #{boardVO에 있는 변수들 이름} / num과 date는 자동증가 옵션있어서 생략해도 됨 -->
-		<!-- sql구문 뿐만 아니라 스프링에서 매개변수를 끌고 오기 위한 필수 태그로 #을 사용한다. php는 ?, jsp는 %를 쓴것 처럼 -->
-	</insert>
-	<select id="read" resultType="com.it.domain.BoardVO"> <!-- id는 반드시 일치해야 한다. 넘겨받는 위치는 BoardVO인거야. -->
-		select * from tblboard where b_num = #{b_num} <!-- 가방안에 들어올 넘버 값 #{'boardVO의 멤버변수 이름'} -->
-	</select>
-	<update id="update">
-		update tblboard set b_subject = #{b_subject},
-		b_name = #{b_name}, b_contents = #{b_contents}
-		where b_num = #{b_num}  <!-- 현재 번호와 날짜 빼고는 수정 가능, where조건은 번호를 받아서~ -->
-	</update>
-	<delete id="delete">
-		delete from tblboard where b_num = #{b_num}
-	</delete>
 	
+<mapper namespace="com.it.mapper.BoardMapper">	
+	<!-- 게시판에 있는 내용을 읽어드리겠다는 method
+		resultType에는 내가 읽을 파일의 경로설정을 해준다. -->
+	<select id="getList" resultType="com.it.domain.BoardVO">
+		select * from tblboard order by b_num desc 
+			limit #{pageAmount} offset ${(pageNum-1) * pageAmount}
+	</select>
+
+<!-- 페이지네이션 -->
+
+	<!-- 총 레코드 갯수 검색 -->
 	<select id="getTotalCount" resultType="int">
 		select count(b_num) from tblboard
 	</select>
+
+
+	<!-- Create -->
+	
+	<insert id="insert">
+		insert into tblboard (b_subject, b_name, b_contents)
+		values (#{b_subject}, #{b_name}, #{b_contents})
+	<!-- #{ } php에서 ?에 해당하는것들. 
+		 #{ }에는 BoardMapper.java에서 BoardVO.java를 board에 담아 insert로 넘긴다고
+		 선언해 두었기 때문에, insert 구문에는 BoardVO에서 선언한 매개변수가 들어간다. 
+		 다만 b_num은 A.I설정해 두었고, date도 자동설정이기 때문에 나머지 3개변수만 씀-->
+	</insert>
+	
+	<!-- Read -->
+	<select id="read" resultType="com.it.domain.BoardVO">
+		select * from tblboard where b_num = #{b_num}
+	</select>
+
+	<!-- Update 반환값 없음.-->
+	<update id="update">
+		update tblboard set b_subject = #{b_subject},
+		b_name = #{b_name}, b_contents = #{b_contents}
+		where b_num = #{b_num}
+	</update>
+	<!-- Delete -->
+	<delete id="delete">
+		delete from tblboard where b_num = #{b_num}
+	</delete>		
 	
 </mapper>
