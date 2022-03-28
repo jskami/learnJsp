@@ -84,5 +84,11 @@ public class ProductController {
 		}
 	}
 	
+	@GetMapping("/delete")
+	public String delete(ProductVO product) { 
+		log.info("---------- 삭제 ---------");
+		service.delete(product); // delete.jsp파일은 필요없고 이 구문에서 삭제가 처리된다.
+		return "redirect:/product/list";
+	}
 	
 }

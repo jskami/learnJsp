@@ -2,19 +2,20 @@
     pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>   
 <%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt" %>
-<%@include file="../include/header.jsp" %>
+<%@include file="../include/All_head.jsp" %>
+<br>
 
 				<!-- Begin Page Content -->
                 <div class="container-fluid">
 
                     <!-- Page Heading -->
-                    <h1 class="h3 mb-2 text-gray-800">작성</h1>
+                    <h1 class="h3 mb-2 text-gray-800">사용자 등록</h1>
                     <p class="mb-4"></p>
 
                     <!-- DataTales Example -->
                     <div class="card shadow mb-4">
                         <div class="card-header py-3">
-                            <h6 class="m-0 font-weight-bold text-primary"><a href="/member2/list">작성 정보</a></h6>
+                            <h6 class="m-0 font-weight-bold text-primary"><a href="/member2/list"><button>사용자 목록</button></a></h6>
                         </div>
                         <div class="card-body">
                             <div class="table-responsive">
@@ -40,6 +41,18 @@
                            </div>
                            <div class="form-group row">
                                <div class="col-sm-6 mb-3 mb-sm-0">
+                               	   <label>전화번호</label>
+                                   <input type="text" class="form-control" name="m_phone" placeholder="PHONE NUMBER">
+                               </div>
+                           </div>
+                           <div class="form-group row">
+                               <div class="col-sm-6 mb-3 mb-sm-0">
+                               	   <label>이메일</label>
+                                   <input type="text" class="form-control" name="m_email" placeholder="E-MAIL">
+                               </div>
+                           </div>
+                           <div class="form-group row">
+                               <div class="col-sm-6 mb-3 mb-sm-0">
                                    <input type="submit" class="form-control" placeholder="제출">
                                </div>
                            </div>
@@ -48,4 +61,4 @@
 				</div>
 			</div>
 		</div>			
-<%@include file="../include/footer.jsp" %>
+<%@include file="../include/All_foot.jsp" %>

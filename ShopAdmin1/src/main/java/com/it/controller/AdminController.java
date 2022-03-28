@@ -19,7 +19,7 @@ import lombok.extern.log4j.Log4j;
 @RequestMapping("/admin/")
 public class AdminController {
 	
-	@Setter(onMethod_ =@Autowired)
+	@Setter(onMethod_ = @Autowired)
 	private AdminService service;
 	
 	@GetMapping("/login")
@@ -32,7 +32,7 @@ public class AdminController {
 		log.info(admin);
 		boolean chk = service.auth(admin); // 서비스에 로그인 정보를 건네준다. // 현재 서비스에 로그인이 찍히지 않으니까 여기서 해보자. // 체크변수를 불리언 타입으로 만들어서 확인해보자.
 		if (chk == true) {
-			admin = service.read(admin); // read.(member)에서 멤버에는 id와pw가 들어있다.
+//			admin = service.read(admin); // read.(member)에서 멤버에는 id와pw가 들어있다.
 			session.setAttribute("a_id", admin.getA_id()); // 세션변수 생성
 			log.info("인증성공");
 			return "redirect:/";

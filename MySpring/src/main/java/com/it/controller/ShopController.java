@@ -115,7 +115,7 @@ public class ShopController {
 	@GetMapping("/cartdeleteall")
 	public String cartdeleteall(CartmainVO cartmain) {
 		cartservice.deleteSuball(cartmain);
-		return "redirect:/shop/cartinfo";
+		return "/shop/cartinfo";
 	}
 	
 	@GetMapping("/orderinfo")

@@ -80,7 +80,7 @@
 	<delete id="deleteSub">
 		DELETE FROM tblcartsub WHERE cs_code = #{cs_code}
 	</delete>
-	<delete id="deletesuball">
+	<delete id="deleteSuball">
 		DELETE FROM tblcartsub WHERE cm_code = #{cm_code}
 	</delete>
 	

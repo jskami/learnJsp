@@ -3,12 +3,19 @@
     pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>   
 <%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt" %>
-<%@include file="../include/header.jsp" %>
+<%@include file="../include/product_head.jsp" %>
 <script>
 	function ImgWinOpen(p_code) {
-		window.open("/product/imgupload?p_code="+p_code,"","width=500,height=200,toolbar=no,menubar=no,status=no,scrollbars=no"); // 자스 내부 함수로서 윈도우.open은 새창 띄우기이다. ("url위치(절대경로)/파일을 업로드하기 위한 위치/불러올 데이터 명칭="+동일한 데이터 명칭,"","속성값(참고용으로 아무거나 넣어보자)")
+		window.open("/product2/imgupload?p_code="+p_code,"","width=500,height=200,toolbar=no,menubar=no,status=no,scrollbars=no"); // 자스 내부 함수로서 윈도우.open은 새창 띄우기이다. ("url위치(절대경로)/파일을 업로드하기 위한 위치/불러올 데이터 명칭="+동일한 데이터 명칭,"","속성값(참고용으로 아무거나 넣어보자)")
 	}                         // 이것을 받아낼 수 있는 컨트롤러를 작성해야한다.
 </script>
+<br>
+					<!-- Page Heading -->
+                    <h1 class="h3 mb-2 text-gray-800">상품 LIST</h1>
+                    <p> 사용자 ID : ${m_id}</p>
+					<p> 사용자 NAME : ${m_name}</p>
+                    <!-- <a href="/member2/login">로그인</a> -->
+                    <p class="mb-4"></p>
 
 				<!-- Begin Page Content -->
                 <div class="container-fluid">
@@ -20,7 +27,7 @@
                     <!-- DataTales Example -->
                     <div class="card shadow mb-4">
                         <div class="card-header py-3">
-                            <h6 class="m-0 font-weight-bold text-primary"><a href="/product/list">상품 목록으로 이동</a></h6>
+                            <h6 class="m-0 font-weight-bold text-primary"><a href="/product2/list"><button>상품 목록</button></a></h6>
                         </div>
                         <div class="card-body">
                             <div class="table-responsive">
@@ -69,9 +76,10 @@
                            </div>
                            <div class="form-group row">
                                <div class="col-sm-6 mb-3 mb-sm-0">
-                                   <a href="/product/update?p_code=${product.p_code}"><button>수정</button></a>
+                                   <!-- <a href="/product2/update?p_code=${product.p_code}"><button>수정</button></a> -->
+                                   <a href="/product2/update?p_code=${product.p_code}"><button>수정</button></a>
                                    &nbsp;&nbsp;&nbsp;
-                                   <a href="/product/delete?p_code=${product.p_code}"><button>삭제</button></a>
+                                   <a href="/product2/delete?p_code=${product.p_code}"><button>삭제</button></a>
                                </div>
                            </div>
                        	
@@ -79,4 +87,4 @@
 				</div>
 			</div>
 		</div>			
-<%@include file="../include/footer.jsp" %>
+<%@include file="../include/product_foot.jsp" %>

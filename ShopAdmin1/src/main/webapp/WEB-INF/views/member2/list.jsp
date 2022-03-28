@@ -2,19 +2,22 @@
     pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>   
 <%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt" %>
-<%@include file="../include/header.jsp" %>
+<%@include file="../include/All_head.jsp" %>
+<br>
+					<!-- Page Heading -->
+                    <h1 class="h3 mb-2 text-gray-800">세션 확인</h1>
+                    <p> 관리자 ID : ${a_id}</p>
+                    
                 <!-- Begin Page Content -->
                 <div class="container-fluid">
 
                     <!-- Page Heading -->
-                    <h1 class="h3 mb-2 text-gray-800">LIST</h1>
-                    <a href="/member2/login">로그인</a>
-                    <p class="mb-4"></p>
-
+                    <h1 class="h3 mb-2 text-gray-800">Member List</h1>
+                    
                     <!-- DataTales Example -->
                     <div class="card shadow mb-4">
                         <div class="card-header py-3">
-                            <h6 class="m-0 font-weight-bold text-primary"><a href="/member2/insert">insert</a></h6>
+                            <h6 class="m-0 font-weight-bold text-primary"><a href="/member2/insert"><button>사용자 등록</button></a></h6>
                         </div>
                         <div class="card-body">
                             <div class="table-responsive">
@@ -45,5 +48,5 @@
                 </div>
                 <!-- /.container-fluid -->
                 
-<%@include file="../include/footer.jsp" %>
+<%@include file="../include/All_foot.jsp" %>
             

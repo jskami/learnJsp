@@ -2,18 +2,19 @@
     pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt" %>
-<%@include file="../include/header.jsp" %>
+<%@include file="../include/All_head.jsp" %>
+<br>
                 <!-- Begin Page Content -->
                 <div class="container-fluid">
 
                     <!-- Page Heading -->
-                    <h1 class="h3 mb-2 text-gray-800">글쓰기</h1>
+                    <h1 class="h3 mb-2 text-gray-800">Write</h1>
                     <p class="mb-4"></p>
 
                     <!-- DataTales Example -->
                     <div class="card shadow mb-4">
                         <div class="card-header py-3">
-                            <h6 class="m-0 font-weight-bold text-primary"><a href="/board2/list">게시판리스트</a></h6>
+                            <h6 class="m-0 font-weight-bold text-primary"><a href="/board2/list"><button>게시판리스트</button></a></h6>
                         </div>
                         <div class="card-body">
                             <div class="table-responsive">
@@ -27,7 +28,7 @@
 								<div class="form-group row">
                                     <div class="col-sm-6 mb-3 mb-sm-0">
                                     	<label>작성자</label>
-                                        <input type="text" class="form-control" name="b_name">
+                                        <input type="text" class="form-control" name="b_name" value="${a_id}" readonly>
                                     </div>
                                 </div>
                                 <div class="form-group row">
@@ -55,4 +56,4 @@
 
                 </div>
                 <!-- /.container-fluid -->
-<%@include file="../include/footer.jsp" %>
+<%@include file="../include/All_foot.jsp" %>

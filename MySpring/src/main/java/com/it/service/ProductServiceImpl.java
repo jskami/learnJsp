@@ -35,12 +35,12 @@ public class ProductServiceImpl implements ProductService {
 
 	@Override
 	public void update(ProductVO product) {
-		
+		mapper.update(product);
 	}
 
 	@Override
 	public void delete(ProductVO product) {
-		
+		mapper.delete(product);
 	}
 	
 }

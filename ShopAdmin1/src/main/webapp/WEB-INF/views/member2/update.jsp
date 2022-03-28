@@ -1,9 +1,9 @@
-<!-- // 여기에서 활용할 샘플은 insert.jsp이다.(형식이 비슷하니까) -->
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>   
 <%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt" %>
-<%@include file="../include/header.jsp" %>
+<%@include file="../include/All_head.jsp" %>
+<br>
 
 				<!-- Begin Page Content -->
                 <div class="container-fluid">
@@ -15,12 +15,12 @@
                     <!-- DataTales Example -->
                     <div class="card shadow mb-4">
                         <div class="card-header py-3">
-                            <h6 class="m-0 font-weight-bold text-primary"><a href="/member/list">정보 수정</a></h6>
+                            <h6 class="m-0 font-weight-bold text-primary"><a href="/member2/list"><button>사용자 목록</button></a></h6>
                         </div>
                         <div class="card-body">
                             <div class="table-responsive">
 
-						<form method="post" action="/member/update" class="user">
+						<form method="post" action="/member2/update" class="user">
                            <div class="form-group row">
                                <div class="col-sm-6 mb-3 mb-sm-0">
                                	   <label>아이디</label>
@@ -55,4 +55,4 @@
 				</div>
 			</div>
 		</div>			
-<%@include file="../include/footer.jsp" %>
+<%@include file="../include/All_foot.jsp" %>

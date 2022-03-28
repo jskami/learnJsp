@@ -1,6 +1,5 @@
 package com.it.mapper;
 
-import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.test.context.ContextConfiguration;
@@ -18,7 +17,7 @@ public class AdminMapperTest {
 	@Setter(onMethod_ = @Autowired)
 	private AdminMapper mapper;
 	
-	@Test
+	//@Test
 	public void testRead() {
 		AdminVO admin = new AdminVO();
 		admin.setA_id("subadmin");

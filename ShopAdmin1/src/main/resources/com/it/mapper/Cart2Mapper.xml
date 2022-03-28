@@ -1,0 +1,88 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+
+<!DOCTYPE mapper
+	PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+	"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+	
+<mapper namespace="com.it.mapper.Cart2Mapper">
+
+<!-- getList -->
+
+	<select id="getListMain" resultType="com.it.domain.Cartmain2VO">
+		SELECT * FROM tblcartmain2 ORDER BY cm_code DESC
+	</select>
+	<select id="getListSub" resultType="com.it.domain.Cartsub2VO">
+		SELECT * FROM tblcartsub2 ORDER BY cs_code DESC
+	</select>
+	
+	<!-- cm_code를 넘겨받아 cartsub를 검색하는 쿼리. getmapper.java에서도 가방을 파라미터로 받아야함 -->
+	<select id="getListCart" resultType="com.it.domain.Cartsub2VO">
+		SELECT * FROM tblcartsub2 WHERE cm_code = #{cm_code} ORDER BY cs_code DESC
+	</select>
+	
+	<!-- 장바구니에 뿌려줄 product테이블과 cartsub를 조인시킬 쿼리 -->
+	<select id="getListCartDetail" resultType="com.it.domain.CartdetailDTO">
+		SELECT cs.cs_code, p.p_code, p.p_name, p.p_price, cs.cs_cnt, p.p_price*cs.cs_cnt as cs_money 
+		FROM tblproduct2 p, tblcartsub2 cs
+		WHERE p.p_code = cs.p_code
+		and cs.cm_code = #{cm_code} 
+	</select>
+	
+<!-- Read -->
+	<!-- 집계함수를 사용하여 cm_code로 해당 장바구니 번호의 총 금액 구하기 -->
+	<select id="getCartTotal" resultType="com.it.domain.CartmemberDTO">
+		SELECT sum(p.p_price * cs.cs_cnt) as cm_total 
+		FROM	tblproduct2 as p, tblcartsub2 cs
+		WHERE	p.p_code = cs.p_code
+		and cs.cm_code = #{cm_code}
+	</select>
+
+	<select id="readMain" resultType="com.it.domain.Cartmain2VO">
+		SELECT * FROM tblcartmain2 WHERE cm_code = #{cm_code} 
+	</select>
+	<select id="readSub" resultType="com.it.domain.Cartsub2VO">
+		SELECT * FROM tblcartsub2 WHERE cs_code = #{cs_code}
+	</select>
+	
+	<!-- m_id를 가지고 cartmain의 결과값을 검색하는 쿼리 -->
+	<select id="readMainid" resultType="com.it.domain.Cartmain2VO">
+		SELECT * FROM tblcartmain2 WHERE m_id = #{m_id}
+	</select>
+	
+	<!-- 장바구니의 중복검사를 하는 쿼리 -->
+	<select id="readSubproduct" resultType="com.it.domain.Cartsub2VO">
+		SELECT * FROM tblcartsub2 WHERE cm_code = #{cm_code} and p_code = #{p_code}
+	</select>
+	
+<!-- insert -->
+
+	<insert id="insertMain">
+		INSERT INTO tblcartmain2 (m_id) VALUES (#{m_id})
+	</insert>
+	<insert id="insertSub">
+		INSERT INTO tblcartsub2 (cm_code, p_code, cs_cnt) VALUES (#{cm_code}, #{p_code}, #{cs_cnt})
+	</insert>
+	
+	
+<!-- update -->
+
+	<update id="updateSub">
+		UPDATE tblcartsub2 SET cs_cnt = #{cs_cnt}
+		WHERE cs_code = #{cs_code}
+	</update>
+	
+	
+<!-- delete -->
+	
+	<delete id="deleteMain">
+		DELETE FROM tblcartmain2 WHERE cm_code = #{cm_code} 
+	</delete>
+	<delete id="deleteSub">
+		DELETE FROM tblcartsub2 WHERE cs_code = #{cs_code}
+	</delete>
+	<delete id="deletesuball">
+		DELETE FROM tblcartsub2 WHERE cm_code = #{cm_code}
+	</delete>
+	
+	
+</mapper>

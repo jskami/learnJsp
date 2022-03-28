@@ -30,7 +30,7 @@
 	<!-- Read는 id한가지 값만 불러오므로 로그인시 아이디와 비밀번호를 확인할 쿼리 작성 -->
 	<!-- 	
 	<select id="auth" resultType="com.it.domain.MemberVO">
-		select * from tblmembeer where m_id = #{m_id} and m_passwd = #{m_passwd}
+		select * from tblmember where m_id = #{m_id} and m_passwd = #{m_passwd}
 	</select>	 -->
 	
 

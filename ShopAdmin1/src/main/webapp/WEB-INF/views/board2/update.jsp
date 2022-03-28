@@ -2,22 +2,23 @@
     pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt" %>
-<%@include file="../include/header.jsp" %>
+<%@include file="../include/All_head.jsp" %>
+<br>
                 <!-- Begin Page Content -->
                 <div class="container-fluid">
 
                     <!-- Page Heading -->
-                    <h1 class="h3 mb-2 text-gray-800">수정하기</h1>
+                    <h1 class="h3 mb-2 text-gray-800">Update</h1>
                     <p class="mb-4"></p>
 
                     <!-- DataTales Example -->
                     <div class="card shadow mb-4">
                         <div class="card-header py-3">
-                            <h6 class="m-0 font-weight-bold text-primary"><a href="/board2/list?pageNum=${page.pageNum}">게시판리스트</a></h6>
+                            <h6 class="m-0 font-weight-bold text-primary"><a href="/board2/list?pageNum=${page.pageNum}"><button>게시판리스트</button></a></h6>
                         </div>
                         <div class="card-body">
                             <div class="table-responsive">
-                            <form method="post" action="/board2/update?pageNum=${page.pageNum}" class="user">
+                            <form method="post" action="/board2/update?pageNum=${page.pageNum}" class="user" enctype="multipart/form-data">
                             	<div class="form-group row">
                                     <div class="col-sm-6 mb-3 mb-sm-0">
                                     	<label>번호</label>
@@ -42,6 +43,12 @@
                                         <textarea rows="10" class="form-control" name="b_contents">${board.b_contents}</textarea>
                                     </div>
                                 </div>
+                                <!-- <div class="form-group row">
+                                    <div class="col-sm-6 mb-3 mb-sm-0">
+                                    	<label>파일</label>
+                                        <input type="file" class="form-control" name="b_file">
+                                    </div>
+                                </div> -->
                                 <div class="form-group row">
                                     <div class="col-sm-6 mb-3 mb-sm-0">
                                     	<label>작성일</label>
@@ -61,4 +68,4 @@
 
                 </div>
                 <!-- /.container-fluid -->
-<%@include file="../include/footer.jsp" %>
+<%@include file="../include/All_foot.jsp" %>

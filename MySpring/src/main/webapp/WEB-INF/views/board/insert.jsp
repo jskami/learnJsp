@@ -3,6 +3,10 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>   
 <%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt" %>
 <%@include file="../include/header.jsp" %>
+
+<script src="/resources/js/my.js"></script>
+
+
 				<!-- Begin Page Content -->
                 <div class="container-fluid">
 
@@ -18,28 +22,29 @@
                         <div class="card-body">
                             <div class="table-responsive">
 
-						<form method="post" action="/board/insert" class="user">
+						<form class="user" id="id_writeform" name="writefrm">
                            <div class="form-group row">
                                <div class="col-sm-6 mb-3 mb-sm-0">
                                	   <label>제목</label>
-                                   <input type="text" class="form-control" name="b_subject" placeholder="제목">
+                                   <input type="text" id="id_subject" class="form-control" name="b_subject" placeholder="제목">
                                </div>
                            </div>
                            <div class="form-group row">
                                <div class="col-sm-6 mb-3 mb-sm-0">
                                	   <label>작성자</label>
-                                   <input type="text" class="form-control" name="b_name" placeholder="작성자">
+                                   <input type="text" id="id_name" class="form-control" name="b_name" placeholder="작성자">
                                </div>
                            </div>
                            <div class="form-group row">
                            		<div class="col-sm-6 mb-3 mb-sm-0">
                            			<label>내용</label>
-                               		<textarea rows="10" cols=150" class="form-control" name="b_contents" placeholder="내용"></textarea>
+                               		<textarea rows="10" cols=150" id="id_contents" class="form-control" name="b_contents" placeholder="내용"></textarea>
                            		</div>
                            </div>
                            <div class="form-group row">
                                <div class="col-sm-6 mb-3 mb-sm-0">
-                                   <input type="submit" class="form-control" placeholder="제출">
+                                   <input type="button" id="id_btn" class="form-control" value="글작성" onclick="writeform();" placeholder="제출">
+							       <a href="javascript:writeform2();">글쓰기2</a>
                                </div>
                            </div>
                        	</form>

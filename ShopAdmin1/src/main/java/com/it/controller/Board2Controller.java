@@ -8,6 +8,7 @@ import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import org.apache.commons.fileupload.DiskFileUpload;
 import org.apache.commons.fileupload.FileItem;
@@ -35,23 +36,38 @@ public class Board2Controller {
 	private Board2Service service;
 	
 	@GetMapping("/list") // ex) http://주소:8080/board/list <-요기 (하위구조)
-	public void list(Model model, PageDTO page/*, @RequestParam("user") String user, @RequestParam("age") int age*/) { // 웹에서 처리할 이름(반드시 동일해야 할 필욘 없지만 편의상 동일하게 하는게 좋겠지?), 웹 브라우저로 전달하기 위해 만드는중 / 모델 객체..왜 뜬금 등장? / @RequestParam(변수명 지정) 타입 변수명 / 괄호 안의 파란색 유저는 웹 브라우저에서 사용하는 변수명이고 타입 뒤에 갈색 유저는 클래스 내에서 쓰는 변수명이다.
+	public String list(Model model, PageDTO page, HttpSession session ) {
+									/*, @RequestParam("user") String user, @RequestParam("age") int age*/ // 웹에서 처리할 이름(반드시 동일해야 할 필욘 없지만 편의상 동일하게 하는게 좋겠지?), 웹 브라우저로 전달하기 위해 만드는중 / 모델 객체..왜 뜬금 등장? / @RequestParam(변수명 지정) 타입 변수명 / 괄호 안의 파란색 유저는 웹 브라우저에서 사용하는 변수명이고 타입 뒤에 갈색 유저는 클래스 내에서 쓰는 변수명이다.
 		                            // Model 객체 : VO객체를 저장해서 jsp 파일로 전송, 운반형, 내장객체, 테이블에 있는 자료를 jsp파일로 넘겨주는 역할, 현재 VO객체는 비어있는 상태이다.
 									// 현재는 리스트에 줄게 없으니 이대로 두고 호출만 해보자! - 톰캣 실행!
-		// list.jsp에 데이터를 전달해야 함, 오직 Model만이 데이터 전달이 가능하다!
+									// list.jsp에 데이터를 전달해야 함, 오직 Model만이 데이터 전달이 가능하다!
+		String a_id = (String)session.getAttribute("a_id");
+		if(a_id == null) {
+			return "redirect:/admin/login";
+		} else {
 		model.addAttribute("list", service.getList(page)); // getList로 조회한 모든 내용을 list변수로 전달, service.getList()는 다중데이터이다.
 		int total = service.getTotalCount();  // 전체 레코드 개수 호출
 		PageViewDTO pageview = new PageViewDTO(page, total);
 		model.addAttribute("pageview", pageview);
+	} return "/board2/list";
 	}
 	
 	@GetMapping("/insert")
-	public void insert() { // 현재 데이터가 없는 상태인거야! 비어있는 폼으로만 나오는거야.
-		// 페이지를 호출만 함
+	public String insert(HttpSession session) { // 현재 데이터가 없는 상태인거야! 비어있는 폼으로만 나오는거야.
+		String a_id = (String)session.getAttribute("a_id");
+		if(a_id == null) {
+			return "redirect:/admin/login";
+		} else {
+			return "/board2/insert";
+		}
 	}
 	
 	@PostMapping("/insert")
-	public String insert(HttpServletRequest request) {
+	public String insert(HttpServletRequest request, HttpSession session) {
+		String a_id = (String)session.getAttribute("a_id");
+		if(a_id == null) {
+			return "redirect:/admin/login";
+		} else {
 		DiskFileUpload upload = new DiskFileUpload(); // 파일 전송 컴포넌트 객체 생성
 		try {
 			List items = upload.parseRequest(request); // 웹브라우저 전송 객체 생성해서 업로드 컴포넌트에 전달
@@ -97,7 +113,64 @@ public class Board2Controller {
 			System.out.println(e);
 		}
 		return "redirect:/board2/list";
+		}
 	}
+	
+	@GetMapping("/view")
+	public String view(Board2VO board, Model model, PageDTO page, HttpSession session) {
+		String a_id = (String)session.getAttribute("a_id");
+		if(a_id == null) {
+			return "redirect:/admin/login";
+		} else {
+		log.info("---------------읽기 전--------------------");
+		log.info(board);
+		board = service.read(board);
+		log.info("----------------읽은 후-------------------");
+		log.info(board);
+		model.addAttribute("board", board);
+		model.addAttribute("page", page);
+		} return "/board2/view";
+	}
+	
+	@GetMapping("/update")
+	public String update(Board2VO board, Model model, PageDTO page, HttpSession session) {
+		String a_id = (String)session.getAttribute("a_id");
+		if(a_id == null) {
+			return "redirect:/admin/login";
+		} else {
+		log.info("-------------업데이트를 위한 번호 ------------------");
+		log.info(board);
+		board = service.read(board);  //번호만 사용하여 조회
+		log.info("-------------업데이트를 위한 데이터-------------------");
+		log.info(board);
+		model.addAttribute("board", board);
+		model.addAttribute("page", page);
+		} return "/board2/update";
+	}
+	
+	@PostMapping("/update")
+	public String update(Board2VO board, PageDTO page, HttpSession session) {
+		String a_id = (String)session.getAttribute("a_id");
+		if(a_id == null) {
+			return "redirect:/admin/login";
+		} else {
+		log.info("-------- 업데이트 데이터 ---------------");
+		log.info(board);
+		service.update(board); //업데이트
+		} return "redirect:/board2/view?b_num=" + board.getB_num() + "&pageNum=" + page.getPageNum();
+	}
+	
+	@GetMapping("/delete")
+	public String delete(Board2VO board, PageDTO page, HttpSession session) {
+		String a_id = (String)session.getAttribute("a_id");
+		if(a_id == null) {
+			return "redirect:/admin/login";
+		} else {
+		log.info("------------- 삭제 -----------------");
+		service.delete(board);
+		} return "redirect:/board2/list";
+	}
+	
 	
 	@GetMapping("/download")
 	public void download(Board2VO board, HttpServletResponse response) {
@@ -119,13 +192,10 @@ public class Board2Controller {
 			while ((read = fis.read(buffer)) != -1) { // fis.read(buffer)는 버퍼를 읽어내고, 못 읽어내면 -1을 반환한다.(= 같지 않다는 루트를 돌아야한다.) , 여기서의 read는 얼마나 읽어냈는가를 알기 위한 기록일 뿐 읽어낸 실체는 알 수 없다. 여기서 file은 몇 바이트인지도 모르고 얼마나 있는지도 몰라서 반복구문으로 뽑아내야 한다.
 				out.write(buffer, 0, read); // 웹 브라우저에 출력하기 위한 준비, 웹브라우저인지는 현재로서는 모르는 상태이다.
 			}
-			
-			
 		} catch (Exception e) {
 			System.out.println(e);
 		}
 	}
 	
-	
-	
 }
+

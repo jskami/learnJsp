@@ -69,7 +69,7 @@
                            </div>
                            <div class="form-group row">
                                <div class="col-sm-6 mb-3 mb-sm-0">
-                                   <a href="/product/update?p_code=${product.p_code}"><button>수정</button></a>
+                                   <a href="/product/list"><button>수정</button></a>
                                    &nbsp;&nbsp;&nbsp;
                                    <a href="/product/delete?p_code=${product.p_code}"><button>삭제</button></a>
                                </div>

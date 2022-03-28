@@ -102,13 +102,17 @@ alter table tblordersub auto_increment=1001; -- 상품번호를 1001부터 시�
 -- select * from tblordersub;
 
 /* 전체 테이블 삭제 (만들어 놓으면 편함, 역순으로 삭제, 포링키 먼저 삭제하고 프라이머리키 삭제 순서) */
+
 /*
+drop table tblboard;
+drop table tblnotice;
 drop table tblordersub;
 drop table tblordermain;
 drop table tblcartsub;
 drop table tblcartmain;
 drop table tblproduct;
 drop table tblmember;
+drop table tblshipping;
 */
 
 -- 고객을 추가해보자
@@ -245,7 +249,7 @@ create table tblboard2 (
 );
 
 select * from tblboard2 order by b_num desc limit 10;
-
+drop table tblboard2;
 
 
 

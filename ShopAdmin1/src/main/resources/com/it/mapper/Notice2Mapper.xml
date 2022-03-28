@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+
+<!DOCTYPE mapper
+	PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+	"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+	
+<mapper namespace="com.it.mapper.Notice2Mapper">
+<!-- 1. namespace로 Mapper.interface의 경로를 선언해 줌으로써, 해당 인터페이스와 xml에서 선언한 코드를 묶음. -->
+
+
+<!-- 2. NoticeVO가 반환값인 getList 생성자의 내용 정의-->
+<select id="getList" resultType="com.it.domain.Notice2VO">
+	SELECT * FROM tblnotice2 order by n_num desc
+		limit #{pageAmount} offset ${(pageNum-1) * pageAmount}
+</select>
+
+
+<!-- 3. NoticeVO가 반환값인 read생성자의 내용 정의 -->
+<select id="read" resultType="com.it.domain.Notice2VO">
+	SELECT * FROM tblnotice2 WHERE n_num = #{n_num}
+</select>
+
+
+<!-- 4. 반환값이 없는 insert 생성자의 내용 정의
+	입력된 값을 받아 테이블에 넣는다.  -->
+
+<insert id="insert">
+	INSERT INTO tblnotice2 ( n_name, n_subject, n_contents) VALUES (#{n_name}, #{n_subject}, #{n_contents})
+</insert>
+<!-- Date와 num는 자동 등록됨으로 제외한다. -->
+
+
+<!-- 5. 반환값이 없는 update 생성자의 내용 정의 
+	넘버가 동일한 레코드를 수정한다.-->
+<update id="update">
+	UPDATE tblnotice2 SET n_name = #{n_name}, n_subject = #{n_subject}, n_contents = #{n_contents} WHERE n_num = #{n_num} 
+</update>
+
+<!-- 6. 반환값이 없는 delete 생성자의 내용정의 
+	넘버가 동일한 레코드를 삭제한다.-->
+	
+<delete id="delete">
+	DELETE FROM tblnotice2 WHERE n_num = #{n_num} 
+</delete>
+
+
+
+<!--  7. 페이지네이션을 위한 총 게시글 수 구하는 mapper추가 -->
+<select id="getTotalCount" resultType="int">
+	SELECT COUNT(n_num) FROM tblnotice2
+</select> 
+</mapper>
