@@ -250,12 +250,3 @@ create table tblboard2 (
 
 select * from tblboard2 order by b_num desc limit 10;
 drop table tblboard2;
-
-
-
-
-
-
-
-
-

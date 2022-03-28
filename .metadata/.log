@@ -7281,3 +7281,411 @@ java.sql.SQLException: Access denied for user 'javauser'@'localhost' (using pass
 	at org.eclipse.datatools.connectivity.internal.ManagedConnection.createConnection(ManagedConnection.java:166)
 	at org.eclipse.datatools.connectivity.internal.CreateConnectionJob.run(CreateConnectionJob.java:56)
 	at org.eclipse.core.internal.jobs.Worker.run(Worker.java:63)
+
+!ENTRY org.eclipse.datatools.connectivity 2 -1 2022-03-28 09:57:40.288
+!MESSAGE Error creating JDBC Connection connection to WebJava_MySQL. (Error: Access denied for user 'javauser'@'localhost' (using password: YES))
+!STACK 0
+java.sql.SQLException: Access denied for user 'javauser'@'localhost' (using password: YES)
+	at com.mysql.jdbc.SQLError.createSQLException(SQLError.java:965)
+	at com.mysql.jdbc.MysqlIO.checkErrorPacket(MysqlIO.java:3933)
+	at com.mysql.jdbc.MysqlIO.checkErrorPacket(MysqlIO.java:3869)
+	at com.mysql.jdbc.MysqlIO.checkErrorPacket(MysqlIO.java:864)
+	at com.mysql.jdbc.MysqlIO.proceedHandshakeWithPluggableAuthentication(MysqlIO.java:1707)
+	at com.mysql.jdbc.MysqlIO.doHandshake(MysqlIO.java:1217)
+	at com.mysql.jdbc.ConnectionImpl.coreConnect(ConnectionImpl.java:2189)
+	at com.mysql.jdbc.ConnectionImpl.connectOneTryOnly(ConnectionImpl.java:2220)
+	at com.mysql.jdbc.ConnectionImpl.createNewIO(ConnectionImpl.java:2015)
+	at com.mysql.jdbc.ConnectionImpl.<init>(ConnectionImpl.java:768)
+	at com.mysql.jdbc.JDBC4Connection.<init>(JDBC4Connection.java:47)
+	at java.base/jdk.internal.reflect.NativeConstructorAccessorImpl.newInstance0(Native Method)
+	at java.base/jdk.internal.reflect.NativeConstructorAccessorImpl.newInstance(NativeConstructorAccessorImpl.java:64)
+	at java.base/jdk.internal.reflect.DelegatingConstructorAccessorImpl.newInstance(DelegatingConstructorAccessorImpl.java:45)
+	at java.base/java.lang.reflect.Constructor.newInstanceWithCaller(Constructor.java:500)
+	at java.base/java.lang.reflect.Constructor.newInstance(Constructor.java:481)
+	at com.mysql.jdbc.Util.handleNewInstance(Util.java:403)
+	at com.mysql.jdbc.ConnectionImpl.getInstance(ConnectionImpl.java:385)
+	at com.mysql.jdbc.NonRegisteringDriver.connect(NonRegisteringDriver.java:323)
+	at org.eclipse.datatools.connectivity.drivers.jdbc.JDBCConnection.createConnection(JDBCConnection.java:328)
+	at org.eclipse.datatools.connectivity.DriverConnectionBase.internalCreateConnection(DriverConnectionBase.java:105)
+	at org.eclipse.datatools.connectivity.DriverConnectionBase.open(DriverConnectionBase.java:54)
+	at org.eclipse.datatools.connectivity.drivers.jdbc.JDBCConnection.open(JDBCConnection.java:96)
+	at org.eclipse.datatools.enablement.internal.mysql.connection.JDBCMySQLConnectionFactory.createConnection(JDBCMySQLConnectionFactory.java:28)
+	at org.eclipse.datatools.connectivity.internal.ConnectionFactoryProvider.createConnection(ConnectionFactoryProvider.java:83)
+	at org.eclipse.datatools.connectivity.internal.ConnectionProfile.createConnection(ConnectionProfile.java:359)
+	at org.eclipse.datatools.connectivity.internal.ManagedConnection.createConnection(ManagedConnection.java:166)
+	at org.eclipse.datatools.connectivity.internal.CreateConnectionJob.run(CreateConnectionJob.java:56)
+	at org.eclipse.core.internal.jobs.Worker.run(Worker.java:63)
+
+!ENTRY org.eclipse.datatools.connectivity 2 -1 2022-03-28 09:57:40.290
+!MESSAGE Error creating SQL Model Connection connection to WebJava_MySQL. (Error: Access denied for user 'javauser'@'localhost' (using password: YES))
+!STACK 0
+java.sql.SQLException: Access denied for user 'javauser'@'localhost' (using password: YES)
+	at com.mysql.jdbc.SQLError.createSQLException(SQLError.java:965)
+	at com.mysql.jdbc.MysqlIO.checkErrorPacket(MysqlIO.java:3933)
+	at com.mysql.jdbc.MysqlIO.checkErrorPacket(MysqlIO.java:3869)
+	at com.mysql.jdbc.MysqlIO.checkErrorPacket(MysqlIO.java:864)
+	at com.mysql.jdbc.MysqlIO.proceedHandshakeWithPluggableAuthentication(MysqlIO.java:1707)
+	at com.mysql.jdbc.MysqlIO.doHandshake(MysqlIO.java:1217)
+	at com.mysql.jdbc.ConnectionImpl.coreConnect(ConnectionImpl.java:2189)
+	at com.mysql.jdbc.ConnectionImpl.connectOneTryOnly(ConnectionImpl.java:2220)
+	at com.mysql.jdbc.ConnectionImpl.createNewIO(ConnectionImpl.java:2015)
+	at com.mysql.jdbc.ConnectionImpl.<init>(ConnectionImpl.java:768)
+	at com.mysql.jdbc.JDBC4Connection.<init>(JDBC4Connection.java:47)
+	at java.base/jdk.internal.reflect.NativeConstructorAccessorImpl.newInstance0(Native Method)
+	at java.base/jdk.internal.reflect.NativeConstructorAccessorImpl.newInstance(NativeConstructorAccessorImpl.java:64)
+	at java.base/jdk.internal.reflect.DelegatingConstructorAccessorImpl.newInstance(DelegatingConstructorAccessorImpl.java:45)
+	at java.base/java.lang.reflect.Constructor.newInstanceWithCaller(Constructor.java:500)
+	at java.base/java.lang.reflect.Constructor.newInstance(Constructor.java:481)
+	at com.mysql.jdbc.Util.handleNewInstance(Util.java:403)
+	at com.mysql.jdbc.ConnectionImpl.getInstance(ConnectionImpl.java:385)
+	at com.mysql.jdbc.NonRegisteringDriver.connect(NonRegisteringDriver.java:323)
+	at org.eclipse.datatools.connectivity.drivers.jdbc.JDBCConnection.createConnection(JDBCConnection.java:328)
+	at org.eclipse.datatools.connectivity.DriverConnectionBase.internalCreateConnection(DriverConnectionBase.java:105)
+	at org.eclipse.datatools.connectivity.DriverConnectionBase.open(DriverConnectionBase.java:54)
+	at org.eclipse.datatools.connectivity.drivers.jdbc.JDBCConnection.open(JDBCConnection.java:96)
+	at org.eclipse.datatools.enablement.internal.mysql.connection.JDBCMySQLConnectionFactory.createConnection(JDBCMySQLConnectionFactory.java:28)
+	at org.eclipse.datatools.connectivity.internal.ConnectionFactoryProvider.createConnection(ConnectionFactoryProvider.java:83)
+	at org.eclipse.datatools.connectivity.internal.ConnectionProfile.createConnection(ConnectionProfile.java:359)
+	at org.eclipse.datatools.connectivity.sqm.internal.core.connection.ConnectionInfoImpl.initializeJDBCConnection(ConnectionInfoImpl.java:705)
+	at org.eclipse.datatools.connectivity.sqm.internal.core.connection.ConnectionInfoImpl.<init>(ConnectionInfoImpl.java:690)
+	at org.eclipse.datatools.connectivity.sqm.internal.core.connection.ConnectionFactory.createConnection(ConnectionFactory.java:38)
+	at org.eclipse.datatools.connectivity.sqm.core.SQMConnectionFactory.createConnection(SQMConnectionFactory.java:45)
+	at org.eclipse.datatools.connectivity.sqm.internal.core.connection.ConnectionFactory.createConnection(ConnectionFactory.java:59)
+	at org.eclipse.datatools.connectivity.internal.ConnectionFactoryAdapterProvider.createConnection(ConnectionFactoryAdapterProvider.java:114)
+	at org.eclipse.datatools.connectivity.internal.ManagedConnection.createConnection(ManagedConnection.java:163)
+	at org.eclipse.datatools.connectivity.internal.CreateConnectionJob.run(CreateConnectionJob.java:56)
+	at org.eclipse.core.internal.jobs.Worker.run(Worker.java:63)
+
+!ENTRY org.eclipse.datatools.connectivity 4 -1 2022-03-28 09:57:40.383
+!MESSAGE Could not connect to WebJava_MySQL.
+!SUBENTRY 1 org.eclipse.datatools.connectivity 2 -1 2022-03-28 09:57:40.383
+!MESSAGE Error creating SQL Model Connection connection to WebJava_MySQL. (Error: Access denied for user 'javauser'@'localhost' (using password: YES))
+!STACK 0
+java.sql.SQLException: Access denied for user 'javauser'@'localhost' (using password: YES)
+	at com.mysql.jdbc.SQLError.createSQLException(SQLError.java:965)
+	at com.mysql.jdbc.MysqlIO.checkErrorPacket(MysqlIO.java:3933)
+	at com.mysql.jdbc.MysqlIO.checkErrorPacket(MysqlIO.java:3869)
+	at com.mysql.jdbc.MysqlIO.checkErrorPacket(MysqlIO.java:864)
+	at com.mysql.jdbc.MysqlIO.proceedHandshakeWithPluggableAuthentication(MysqlIO.java:1707)
+	at com.mysql.jdbc.MysqlIO.doHandshake(MysqlIO.java:1217)
+	at com.mysql.jdbc.ConnectionImpl.coreConnect(ConnectionImpl.java:2189)
+	at com.mysql.jdbc.ConnectionImpl.connectOneTryOnly(ConnectionImpl.java:2220)
+	at com.mysql.jdbc.ConnectionImpl.createNewIO(ConnectionImpl.java:2015)
+	at com.mysql.jdbc.ConnectionImpl.<init>(ConnectionImpl.java:768)
+	at com.mysql.jdbc.JDBC4Connection.<init>(JDBC4Connection.java:47)
+	at java.base/jdk.internal.reflect.NativeConstructorAccessorImpl.newInstance0(Native Method)
+	at java.base/jdk.internal.reflect.NativeConstructorAccessorImpl.newInstance(NativeConstructorAccessorImpl.java:64)
+	at java.base/jdk.internal.reflect.DelegatingConstructorAccessorImpl.newInstance(DelegatingConstructorAccessorImpl.java:45)
+	at java.base/java.lang.reflect.Constructor.newInstanceWithCaller(Constructor.java:500)
+	at java.base/java.lang.reflect.Constructor.newInstance(Constructor.java:481)
+	at com.mysql.jdbc.Util.handleNewInstance(Util.java:403)
+	at com.mysql.jdbc.ConnectionImpl.getInstance(ConnectionImpl.java:385)
+	at com.mysql.jdbc.NonRegisteringDriver.connect(NonRegisteringDriver.java:323)
+	at org.eclipse.datatools.connectivity.drivers.jdbc.JDBCConnection.createConnection(JDBCConnection.java:328)
+	at org.eclipse.datatools.connectivity.DriverConnectionBase.internalCreateConnection(DriverConnectionBase.java:105)
+	at org.eclipse.datatools.connectivity.DriverConnectionBase.open(DriverConnectionBase.java:54)
+	at org.eclipse.datatools.connectivity.drivers.jdbc.JDBCConnection.open(JDBCConnection.java:96)
+	at org.eclipse.datatools.enablement.internal.mysql.connection.JDBCMySQLConnectionFactory.createConnection(JDBCMySQLConnectionFactory.java:28)
+	at org.eclipse.datatools.connectivity.internal.ConnectionFactoryProvider.createConnection(ConnectionFactoryProvider.java:83)
+	at org.eclipse.datatools.connectivity.internal.ConnectionProfile.createConnection(ConnectionProfile.java:359)
+	at org.eclipse.datatools.connectivity.sqm.internal.core.connection.ConnectionInfoImpl.initializeJDBCConnection(ConnectionInfoImpl.java:705)
+	at org.eclipse.datatools.connectivity.sqm.internal.core.connection.ConnectionInfoImpl.<init>(ConnectionInfoImpl.java:690)
+	at org.eclipse.datatools.connectivity.sqm.internal.core.connection.ConnectionFactory.createConnection(ConnectionFactory.java:38)
+	at org.eclipse.datatools.connectivity.sqm.core.SQMConnectionFactory.createConnection(SQMConnectionFactory.java:45)
+	at org.eclipse.datatools.connectivity.sqm.internal.core.connection.ConnectionFactory.createConnection(ConnectionFactory.java:59)
+	at org.eclipse.datatools.connectivity.internal.ConnectionFactoryAdapterProvider.createConnection(ConnectionFactoryAdapterProvider.java:114)
+	at org.eclipse.datatools.connectivity.internal.ManagedConnection.createConnection(ManagedConnection.java:163)
+	at org.eclipse.datatools.connectivity.internal.CreateConnectionJob.run(CreateConnectionJob.java:56)
+	at org.eclipse.core.internal.jobs.Worker.run(Worker.java:63)
+!SUBENTRY 1 org.eclipse.datatools.connectivity 2 -1 2022-03-28 09:57:40.383
+!MESSAGE Error creating JDBC Connection connection to WebJava_MySQL. (Error: Access denied for user 'javauser'@'localhost' (using password: YES))
+!STACK 0
+java.sql.SQLException: Access denied for user 'javauser'@'localhost' (using password: YES)
+	at com.mysql.jdbc.SQLError.createSQLException(SQLError.java:965)
+	at com.mysql.jdbc.MysqlIO.checkErrorPacket(MysqlIO.java:3933)
+	at com.mysql.jdbc.MysqlIO.checkErrorPacket(MysqlIO.java:3869)
+	at com.mysql.jdbc.MysqlIO.checkErrorPacket(MysqlIO.java:864)
+	at com.mysql.jdbc.MysqlIO.proceedHandshakeWithPluggableAuthentication(MysqlIO.java:1707)
+	at com.mysql.jdbc.MysqlIO.doHandshake(MysqlIO.java:1217)
+	at com.mysql.jdbc.ConnectionImpl.coreConnect(ConnectionImpl.java:2189)
+	at com.mysql.jdbc.ConnectionImpl.connectOneTryOnly(ConnectionImpl.java:2220)
+	at com.mysql.jdbc.ConnectionImpl.createNewIO(ConnectionImpl.java:2015)
+	at com.mysql.jdbc.ConnectionImpl.<init>(ConnectionImpl.java:768)
+	at com.mysql.jdbc.JDBC4Connection.<init>(JDBC4Connection.java:47)
+	at java.base/jdk.internal.reflect.NativeConstructorAccessorImpl.newInstance0(Native Method)
+	at java.base/jdk.internal.reflect.NativeConstructorAccessorImpl.newInstance(NativeConstructorAccessorImpl.java:64)
+	at java.base/jdk.internal.reflect.DelegatingConstructorAccessorImpl.newInstance(DelegatingConstructorAccessorImpl.java:45)
+	at java.base/java.lang.reflect.Constructor.newInstanceWithCaller(Constructor.java:500)
+	at java.base/java.lang.reflect.Constructor.newInstance(Constructor.java:481)
+	at com.mysql.jdbc.Util.handleNewInstance(Util.java:403)
+	at com.mysql.jdbc.ConnectionImpl.getInstance(ConnectionImpl.java:385)
+	at com.mysql.jdbc.NonRegisteringDriver.connect(NonRegisteringDriver.java:323)
+	at org.eclipse.datatools.connectivity.drivers.jdbc.JDBCConnection.createConnection(JDBCConnection.java:328)
+	at org.eclipse.datatools.connectivity.DriverConnectionBase.internalCreateConnection(DriverConnectionBase.java:105)
+	at org.eclipse.datatools.connectivity.DriverConnectionBase.open(DriverConnectionBase.java:54)
+	at org.eclipse.datatools.connectivity.drivers.jdbc.JDBCConnection.open(JDBCConnection.java:96)
+	at org.eclipse.datatools.enablement.internal.mysql.connection.JDBCMySQLConnectionFactory.createConnection(JDBCMySQLConnectionFactory.java:28)
+	at org.eclipse.datatools.connectivity.internal.ConnectionFactoryProvider.createConnection(ConnectionFactoryProvider.java:83)
+	at org.eclipse.datatools.connectivity.internal.ConnectionProfile.createConnection(ConnectionProfile.java:359)
+	at org.eclipse.datatools.connectivity.internal.ManagedConnection.createConnection(ManagedConnection.java:166)
+	at org.eclipse.datatools.connectivity.internal.CreateConnectionJob.run(CreateConnectionJob.java:56)
+	at org.eclipse.core.internal.jobs.Worker.run(Worker.java:63)
+
+!ENTRY org.eclipse.m2e.logback.appender 2 0 2022-03-28 09:58:15.583
+!MESSAGE Using platform encoding (MS949 actually) to copy filtered resources, i.e. build is platform dependent!
+
+!ENTRY org.eclipse.m2e.logback.appender 2 0 2022-03-28 09:58:15.584
+!MESSAGE Using platform encoding (MS949 actually) to copy filtered resources, i.e. build is platform dependent!
+
+!ENTRY org.eclipse.m2e.logback.appender 2 0 2022-03-28 10:04:36.988
+!MESSAGE Using platform encoding (MS949 actually) to copy filtered resources, i.e. build is platform dependent!
+
+!ENTRY org.eclipse.m2e.logback.appender 2 0 2022-03-28 10:04:36.990
+!MESSAGE Using platform encoding (MS949 actually) to copy filtered resources, i.e. build is platform dependent!
+
+!ENTRY org.eclipse.m2e.logback.appender 2 0 2022-03-28 10:07:55.454
+!MESSAGE Using platform encoding (MS949 actually) to copy filtered resources, i.e. build is platform dependent!
+
+!ENTRY org.eclipse.m2e.logback.appender 2 0 2022-03-28 10:07:55.458
+!MESSAGE Using platform encoding (MS949 actually) to copy filtered resources, i.e. build is platform dependent!
+
+!ENTRY org.eclipse.m2e.logback.appender 2 0 2022-03-28 10:08:01.744
+!MESSAGE Using platform encoding (MS949 actually) to copy filtered resources, i.e. build is platform dependent!
+
+!ENTRY org.eclipse.m2e.logback.appender 2 0 2022-03-28 10:08:01.748
+!MESSAGE Using platform encoding (MS949 actually) to copy filtered resources, i.e. build is platform dependent!
+
+!ENTRY org.eclipse.m2e.logback.appender 2 0 2022-03-28 10:08:27.366
+!MESSAGE Using platform encoding (MS949 actually) to copy filtered resources, i.e. build is platform dependent!
+
+!ENTRY org.eclipse.m2e.logback.appender 2 0 2022-03-28 10:08:27.368
+!MESSAGE Using platform encoding (MS949 actually) to copy filtered resources, i.e. build is platform dependent!
+
+!ENTRY org.eclipse.m2e.logback.appender 2 0 2022-03-28 10:12:41.509
+!MESSAGE Using platform encoding (MS949 actually) to copy filtered resources, i.e. build is platform dependent!
+
+!ENTRY org.eclipse.m2e.logback.appender 2 0 2022-03-28 10:12:41.514
+!MESSAGE Using platform encoding (MS949 actually) to copy filtered resources, i.e. build is platform dependent!
+
+!ENTRY org.eclipse.m2e.logback.appender 2 0 2022-03-28 10:16:19.628
+!MESSAGE Using platform encoding (MS949 actually) to copy filtered resources, i.e. build is platform dependent!
+
+!ENTRY org.eclipse.m2e.logback.appender 2 0 2022-03-28 10:16:19.633
+!MESSAGE Using platform encoding (MS949 actually) to copy filtered resources, i.e. build is platform dependent!
+
+!ENTRY org.eclipse.m2e.logback.appender 2 0 2022-03-28 10:22:05.314
+!MESSAGE Using platform encoding (MS949 actually) to copy filtered resources, i.e. build is platform dependent!
+
+!ENTRY org.eclipse.m2e.logback.appender 2 0 2022-03-28 10:22:05.318
+!MESSAGE Using platform encoding (MS949 actually) to copy filtered resources, i.e. build is platform dependent!
+
+!ENTRY org.eclipse.m2e.logback.appender 2 0 2022-03-28 10:22:50.177
+!MESSAGE Using platform encoding (MS949 actually) to copy filtered resources, i.e. build is platform dependent!
+
+!ENTRY org.eclipse.m2e.logback.appender 2 0 2022-03-28 10:22:50.184
+!MESSAGE Using platform encoding (MS949 actually) to copy filtered resources, i.e. build is platform dependent!
+
+!ENTRY org.eclipse.m2e.logback.appender 2 0 2022-03-28 10:24:18.572
+!MESSAGE Using platform encoding (MS949 actually) to copy filtered resources, i.e. build is platform dependent!
+
+!ENTRY org.eclipse.m2e.logback.appender 2 0 2022-03-28 10:24:18.577
+!MESSAGE Using platform encoding (MS949 actually) to copy filtered resources, i.e. build is platform dependent!
+
+!ENTRY org.eclipse.m2e.logback.appender 2 0 2022-03-28 10:25:03.417
+!MESSAGE Using platform encoding (MS949 actually) to copy filtered resources, i.e. build is platform dependent!
+
+!ENTRY org.eclipse.m2e.logback.appender 2 0 2022-03-28 10:25:03.424
+!MESSAGE Using platform encoding (MS949 actually) to copy filtered resources, i.e. build is platform dependent!
+
+!ENTRY org.eclipse.m2e.logback.appender 2 0 2022-03-28 10:25:59.730
+!MESSAGE Using platform encoding (MS949 actually) to copy filtered resources, i.e. build is platform dependent!
+
+!ENTRY org.eclipse.m2e.logback.appender 2 0 2022-03-28 10:25:59.734
+!MESSAGE Using platform encoding (MS949 actually) to copy filtered resources, i.e. build is platform dependent!
+
+!ENTRY org.eclipse.m2e.logback.appender 2 0 2022-03-28 10:26:15.434
+!MESSAGE Using platform encoding (MS949 actually) to copy filtered resources, i.e. build is platform dependent!
+
+!ENTRY org.eclipse.m2e.logback.appender 2 0 2022-03-28 10:26:15.438
+!MESSAGE Using platform encoding (MS949 actually) to copy filtered resources, i.e. build is platform dependent!
+
+!ENTRY org.eclipse.m2e.logback.appender 2 0 2022-03-28 10:26:59.245
+!MESSAGE Using platform encoding (MS949 actually) to copy filtered resources, i.e. build is platform dependent!
+
+!ENTRY org.eclipse.m2e.logback.appender 2 0 2022-03-28 10:26:59.251
+!MESSAGE Using platform encoding (MS949 actually) to copy filtered resources, i.e. build is platform dependent!
+
+!ENTRY org.eclipse.m2e.logback.appender 2 0 2022-03-28 10:27:14.266
+!MESSAGE Using platform encoding (MS949 actually) to copy filtered resources, i.e. build is platform dependent!
+
+!ENTRY org.eclipse.m2e.logback.appender 2 0 2022-03-28 10:27:14.272
+!MESSAGE Using platform encoding (MS949 actually) to copy filtered resources, i.e. build is platform dependent!
+
+!ENTRY org.eclipse.m2e.logback.appender 2 0 2022-03-28 10:27:26.234
+!MESSAGE Using platform encoding (MS949 actually) to copy filtered resources, i.e. build is platform dependent!
+
+!ENTRY org.eclipse.m2e.logback.appender 2 0 2022-03-28 10:27:26.238
+!MESSAGE Using platform encoding (MS949 actually) to copy filtered resources, i.e. build is platform dependent!
+
+!ENTRY org.eclipse.m2e.logback.appender 2 0 2022-03-28 10:29:43.571
+!MESSAGE Using platform encoding (MS949 actually) to copy filtered resources, i.e. build is platform dependent!
+
+!ENTRY org.eclipse.m2e.logback.appender 2 0 2022-03-28 10:29:43.573
+!MESSAGE Using platform encoding (MS949 actually) to copy filtered resources, i.e. build is platform dependent!
+
+!ENTRY org.eclipse.m2e.logback.appender 2 0 2022-03-28 10:30:06.307
+!MESSAGE Using platform encoding (MS949 actually) to copy filtered resources, i.e. build is platform dependent!
+
+!ENTRY org.eclipse.m2e.logback.appender 2 0 2022-03-28 10:30:06.309
+!MESSAGE Using platform encoding (MS949 actually) to copy filtered resources, i.e. build is platform dependent!
+
+!ENTRY org.eclipse.m2e.logback.appender 2 0 2022-03-28 10:30:16.274
+!MESSAGE Using platform encoding (MS949 actually) to copy filtered resources, i.e. build is platform dependent!
+
+!ENTRY org.eclipse.m2e.logback.appender 2 0 2022-03-28 10:30:16.276
+!MESSAGE Using platform encoding (MS949 actually) to copy filtered resources, i.e. build is platform dependent!
+
+!ENTRY org.eclipse.wst.sse.core 4 4 2022-03-28 10:30:16.668
+!MESSAGE can not get a buffer without a document reference
+!STACK 0
+java.lang.IllegalArgumentException: can not get a buffer without a document reference
+	at org.eclipse.wst.sse.core.internal.FileBufferModelManager.getBuffer(FileBufferModelManager.java:691)
+	at org.eclipse.jst.jsp.core.internal.java.JSPTranslator.getModelPath(JSPTranslator.java:3292)
+	at org.eclipse.jst.jsp.core.internal.java.JSPTranslator.writeExternal(JSPTranslator.java:3399)
+	at java.base/java.io.ObjectOutputStream.writeExternalData(ObjectOutputStream.java:1471)
+	at java.base/java.io.ObjectOutputStream.writeOrdinaryObject(ObjectOutputStream.java:1442)
+	at java.base/java.io.ObjectOutputStream.writeObject0(ObjectOutputStream.java:1187)
+	at java.base/java.io.ObjectOutputStream.writeObject(ObjectOutputStream.java:353)
+	at org.eclipse.jst.jsp.core.internal.java.JSPTranslatorPersister.persistTranslator(JSPTranslatorPersister.java:265)
+	at org.eclipse.jst.jsp.core.internal.java.JSPTranslatorPersister.persistTranslation(JSPTranslatorPersister.java:149)
+	at org.eclipse.jst.jsp.core.internal.java.search.JSPIndexManager.performAction(JSPIndexManager.java:139)
+	at org.eclipse.wst.sse.core.indexing.AbstractIndexManager$ResourceEventProcessingJob$1.run(AbstractIndexManager.java:1569)
+	at org.eclipse.core.runtime.SafeRunner.run(SafeRunner.java:45)
+	at org.eclipse.wst.sse.core.indexing.AbstractIndexManager$ResourceEventProcessingJob.run(AbstractIndexManager.java:1567)
+	at org.eclipse.core.internal.jobs.Worker.run(Worker.java:63)
+
+!ENTRY org.eclipse.m2e.logback.appender 2 0 2022-03-28 10:31:56.108
+!MESSAGE Using platform encoding (MS949 actually) to copy filtered resources, i.e. build is platform dependent!
+
+!ENTRY org.eclipse.m2e.logback.appender 2 0 2022-03-28 10:31:56.110
+!MESSAGE Using platform encoding (MS949 actually) to copy filtered resources, i.e. build is platform dependent!
+
+!ENTRY org.eclipse.m2e.logback.appender 2 0 2022-03-28 10:32:16.796
+!MESSAGE Using platform encoding (MS949 actually) to copy filtered resources, i.e. build is platform dependent!
+
+!ENTRY org.eclipse.m2e.logback.appender 2 0 2022-03-28 10:32:16.816
+!MESSAGE Using platform encoding (MS949 actually) to copy filtered resources, i.e. build is platform dependent!
+
+!ENTRY org.eclipse.m2e.logback.appender 2 0 2022-03-28 10:32:41.175
+!MESSAGE Using platform encoding (MS949 actually) to copy filtered resources, i.e. build is platform dependent!
+
+!ENTRY org.eclipse.m2e.logback.appender 2 0 2022-03-28 10:32:41.178
+!MESSAGE Using platform encoding (MS949 actually) to copy filtered resources, i.e. build is platform dependent!
+
+!ENTRY org.eclipse.m2e.logback.appender 2 0 2022-03-28 10:45:08.334
+!MESSAGE Using platform encoding (MS949 actually) to copy filtered resources, i.e. build is platform dependent!
+
+!ENTRY org.eclipse.m2e.logback.appender 2 0 2022-03-28 10:45:08.336
+!MESSAGE Using platform encoding (MS949 actually) to copy filtered resources, i.e. build is platform dependent!
+
+!ENTRY org.eclipse.m2e.logback.appender 2 0 2022-03-28 10:45:50.818
+!MESSAGE Using platform encoding (MS949 actually) to copy filtered resources, i.e. build is platform dependent!
+
+!ENTRY org.eclipse.m2e.logback.appender 2 0 2022-03-28 10:45:50.820
+!MESSAGE Using platform encoding (MS949 actually) to copy filtered resources, i.e. build is platform dependent!
+
+!ENTRY org.eclipse.m2e.logback.appender 2 0 2022-03-28 10:45:57.870
+!MESSAGE Using platform encoding (MS949 actually) to copy filtered resources, i.e. build is platform dependent!
+
+!ENTRY org.eclipse.m2e.logback.appender 2 0 2022-03-28 10:45:57.872
+!MESSAGE Using platform encoding (MS949 actually) to copy filtered resources, i.e. build is platform dependent!
+
+!ENTRY org.eclipse.m2e.logback.appender 2 0 2022-03-28 10:46:24.653
+!MESSAGE Using platform encoding (MS949 actually) to copy filtered resources, i.e. build is platform dependent!
+
+!ENTRY org.eclipse.m2e.logback.appender 2 0 2022-03-28 10:46:24.655
+!MESSAGE Using platform encoding (MS949 actually) to copy filtered resources, i.e. build is platform dependent!
+
+!ENTRY org.eclipse.m2e.logback.appender 2 0 2022-03-28 10:46:55.021
+!MESSAGE Using platform encoding (MS949 actually) to copy filtered resources, i.e. build is platform dependent!
+
+!ENTRY org.eclipse.m2e.logback.appender 2 0 2022-03-28 10:46:55.023
+!MESSAGE Using platform encoding (MS949 actually) to copy filtered resources, i.e. build is platform dependent!
+
+!ENTRY org.eclipse.m2e.logback.appender 2 0 2022-03-28 10:47:24.602
+!MESSAGE Using platform encoding (MS949 actually) to copy filtered resources, i.e. build is platform dependent!
+
+!ENTRY org.eclipse.m2e.logback.appender 2 0 2022-03-28 10:47:24.606
+!MESSAGE Using platform encoding (MS949 actually) to copy filtered resources, i.e. build is platform dependent!
+
+!ENTRY org.eclipse.m2e.logback.appender 2 0 2022-03-28 10:47:49.954
+!MESSAGE Using platform encoding (MS949 actually) to copy filtered resources, i.e. build is platform dependent!
+
+!ENTRY org.eclipse.m2e.logback.appender 2 0 2022-03-28 10:47:49.957
+!MESSAGE Using platform encoding (MS949 actually) to copy filtered resources, i.e. build is platform dependent!
+
+!ENTRY org.eclipse.m2e.logback.appender 2 0 2022-03-28 10:49:55.896
+!MESSAGE Using platform encoding (MS949 actually) to copy filtered resources, i.e. build is platform dependent!
+
+!ENTRY org.eclipse.m2e.logback.appender 2 0 2022-03-28 10:49:55.898
+!MESSAGE Using platform encoding (MS949 actually) to copy filtered resources, i.e. build is platform dependent!
+
+!ENTRY org.eclipse.m2e.logback.appender 2 0 2022-03-28 10:50:24.907
+!MESSAGE Using platform encoding (MS949 actually) to copy filtered resources, i.e. build is platform dependent!
+
+!ENTRY org.eclipse.m2e.logback.appender 2 0 2022-03-28 10:50:24.909
+!MESSAGE Using platform encoding (MS949 actually) to copy filtered resources, i.e. build is platform dependent!
+
+!ENTRY org.eclipse.m2e.logback.appender 2 0 2022-03-28 10:54:30.590
+!MESSAGE Using platform encoding (MS949 actually) to copy filtered resources, i.e. build is platform dependent!
+
+!ENTRY org.eclipse.m2e.logback.appender 2 0 2022-03-28 10:54:30.591
+!MESSAGE Using platform encoding (MS949 actually) to copy filtered resources, i.e. build is platform dependent!
+
+!ENTRY org.eclipse.m2e.logback.appender 2 0 2022-03-28 10:56:25.159
+!MESSAGE Using platform encoding (MS949 actually) to copy filtered resources, i.e. build is platform dependent!
+
+!ENTRY org.eclipse.m2e.logback.appender 2 0 2022-03-28 10:56:25.161
+!MESSAGE Using platform encoding (MS949 actually) to copy filtered resources, i.e. build is platform dependent!
+
+!ENTRY org.eclipse.m2e.logback.appender 2 0 2022-03-28 11:00:30.138
+!MESSAGE Using platform encoding (MS949 actually) to copy filtered resources, i.e. build is platform dependent!
+
+!ENTRY org.eclipse.m2e.logback.appender 2 0 2022-03-28 11:00:30.140
+!MESSAGE Using platform encoding (MS949 actually) to copy filtered resources, i.e. build is platform dependent!
+
+!ENTRY org.eclipse.m2e.logback.appender 2 0 2022-03-28 11:01:04.239
+!MESSAGE Using platform encoding (MS949 actually) to copy filtered resources, i.e. build is platform dependent!
+
+!ENTRY org.eclipse.m2e.logback.appender 2 0 2022-03-28 11:01:04.240
+!MESSAGE Using platform encoding (MS949 actually) to copy filtered resources, i.e. build is platform dependent!
+
+!ENTRY org.eclipse.m2e.logback.appender 2 0 2022-03-28 11:01:40.020
+!MESSAGE Using platform encoding (MS949 actually) to copy filtered resources, i.e. build is platform dependent!
+
+!ENTRY org.eclipse.m2e.logback.appender 2 0 2022-03-28 11:01:40.022
+!MESSAGE Using platform encoding (MS949 actually) to copy filtered resources, i.e. build is platform dependent!
+
+!ENTRY org.eclipse.m2e.logback.appender 2 0 2022-03-28 11:01:54.894
+!MESSAGE Using platform encoding (MS949 actually) to copy filtered resources, i.e. build is platform dependent!
+
+!ENTRY org.eclipse.m2e.logback.appender 2 0 2022-03-28 11:01:54.898
+!MESSAGE Using platform encoding (MS949 actually) to copy filtered resources, i.e. build is platform dependent!
+
+!ENTRY org.eclipse.m2e.logback.appender 2 0 2022-03-28 11:03:41.637
+!MESSAGE Using platform encoding (MS949 actually) to copy filtered resources, i.e. build is platform dependent!
+
+!ENTRY org.eclipse.m2e.logback.appender 2 0 2022-03-28 11:03:41.639
+!MESSAGE Using platform encoding (MS949 actually) to copy filtered resources, i.e. build is platform dependent!
+
+!ENTRY org.eclipse.m2e.logback.appender 2 0 2022-03-28 11:05:38.333
+!MESSAGE Using platform encoding (MS949 actually) to copy filtered resources, i.e. build is platform dependent!
+
+!ENTRY org.eclipse.m2e.logback.appender 2 0 2022-03-28 11:05:38.335
+!MESSAGE Using platform encoding (MS949 actually) to copy filtered resources, i.e. build is platform dependent!
+
+!ENTRY org.eclipse.m2e.logback.appender 2 0 2022-03-28 11:06:00.967
+!MESSAGE Using platform encoding (MS949 actually) to copy filtered resources, i.e. build is platform dependent!
+
+!ENTRY org.eclipse.m2e.logback.appender 2 0 2022-03-28 11:06:00.969
+!MESSAGE Using platform encoding (MS949 actually) to copy filtered resources, i.e. build is platform dependent!

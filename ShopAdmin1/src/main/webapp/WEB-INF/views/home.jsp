@@ -15,5 +15,6 @@
 		<h3>관리자 로그인을 해주세요.</h3>
 		<p><a href="/admin/login">로그인</a></p>
 	</c:if>
-
+<br>
+<br>
 <%@include file="./include/All_foot.jsp" %>

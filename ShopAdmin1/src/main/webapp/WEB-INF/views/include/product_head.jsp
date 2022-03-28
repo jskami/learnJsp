@@ -73,12 +73,16 @@
                         <li class="nav-item">
                             <a class="nav-link" href="./list">Product</a>
                         </li>
-                        
                         <li class="nav-item">
-                            <a class="nav-link" href="/admin2/login">Login</a>
+                            <a class="nav-link" href="/order2/list">Order</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="/admin2/logout">Logout</a>
+						<c:if test="${a_id == null }">
+                            <a class="nav-link" href="/admin/login">Login</a>
+                        </c:if>
+                        <c:if test="${a_id != null }">
+                            <a class="nav-link" href="/admin/logout">Logout</a>
+                        </c:if>
                         </li>
                     </ul>
                 </div>
