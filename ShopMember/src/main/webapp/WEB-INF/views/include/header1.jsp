@@ -4,13 +4,12 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt" %>    
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
     <title>GAME BANK PROJECT PORTFOLIO</title>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
-    <link rel="apple-touch-icon" href="assets/img/apple-icon.png">
+    <link rel="apple-touch-icon" href="/resources/img/apple-icon.png">
     <link rel="shortcut icon" type="image/x-icon" href="/resources/img/favicon.ico">
 
     <link rel="stylesheet" href="/resources/css/bootstrap.min.css">
@@ -20,13 +19,7 @@
     <!-- Load fonts style after rendering the layout styles -->
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Roboto:wght@100;200;300;400;500;700;900&display=swap">
     <link rel="stylesheet" href="/resources/css/fontawesome.min.css">
-<!--
-    
-TemplateMo 559 Zay Shop
 
-https://templatemo.com/tm-559-zay-shop
-
--->
 </head>
 
 <body>
@@ -36,7 +29,7 @@ https://templatemo.com/tm-559-zay-shop
             <div class="w-100 d-flex justify-content-between">
                 <div>
                     <i class="fa fa-envelope mx-2"></i>
-                    <a class="navbar-sm-brand text-light text-decoration-none" href="mailto:info@company.com">jskami_@naver.com</a>
+                    <a class="navbar-sm-brand text-light text-decoration-none" href="mailto:info@company.com">gamebank_@company.com</a>
                     <i class="fa fa-phone mx-2"></i>
                     <a class="navbar-sm-brand text-light text-decoration-none" href="tel:010-020-0340">010-4434-0000</a>
                 </div>
@@ -56,7 +49,7 @@ https://templatemo.com/tm-559-zay-shop
     <nav class="navbar navbar-expand-lg navbar-light shadow">
         <div class="container d-flex justify-content-between align-items-center">
 
-            <a class="navbar-brand text-success logo h1 align-self-center" href="index.html">
+            <a class="navbar-brand text-success logo h1 align-self-center" href="/">
                 GAME BANK
             </a>
 
@@ -68,19 +61,22 @@ https://templatemo.com/tm-559-zay-shop
                 <div class="flex-fill">
                     <ul class="nav navbar-nav d-flex justify-content-between mx-lg-auto">
                         <li class="nav-item">
-                            <a class="nav-link" href="index.html">Home</a>
+                            <a class="nav-link" href="/">Home</a>
                         </li>
                         <li class="nav-item">
                             <a class="nav-link" href="about.html">About</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="shop.html">Shop</a>
+                            <a class="nav-link" href="/product2/list">Product</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="/shop2/list">Shop</a>
                         </li>
                         <li class="nav-item">
                             <a class="nav-link" href="contact.html">Contact</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="======">Login</a>
+                            <a class="nav-link" href="/admin/login">Login</a>
                         </li>
                     </ul>
                 </div>
@@ -98,11 +94,11 @@ https://templatemo.com/tm-559-zay-shop
                     </a>
                     <a class="nav-icon position-relative text-decoration-none" href="#">
                         <i class="fa fa-fw fa-cart-arrow-down text-dark mr-1"></i>
-                        <span class="position-absolute top-0 left-100 translate-middle badge rounded-pill bg-light text-dark">7</span>
+                        <span class="position-absolute top-0 left-100 translate-middle badge rounded-pill bg-light text-dark"></span>
                     </a>
                     <a class="nav-icon position-relative text-decoration-none" href="#">
                         <i class="fa fa-fw fa-user text-dark mr-3"></i>
-                        <span class="position-absolute top-0 left-100 translate-middle badge rounded-pill bg-light text-dark">+99</span>
+                        <span class="position-absolute top-0 left-100 translate-middle badge rounded-pill bg-light text-dark"></span>
                     </a>
                 </div>
             </div>
@@ -162,15 +158,15 @@ https://templatemo.com/tm-559-zay-shop
                 <div class="container">
                     <div class="row p-5">
                         <div class="mx-auto col-md-8 col-lg-6 order-lg-last">
-                            <img class="img-fluid" src="/resources/img/banner_img_02.jpg" alt="">
+                            <img class="img-fluid" src="/resources/img/banner_img_002.jpg" alt="">
                         </div>
                         <div class="col-lg-6 mb-0 d-flex align-items-center">
                             <div class="text-align-left">
-                                <h1 class="h1">Proident occaecat</h1>
-                                <h3 class="h2">Aliquip ex ea commodo consequat</h3>
+                                <h1 class="h1">'엘든 링', 한국어판 패키지 예약 판매 내일 시작</h1>
+                                <h3 class="h2">패키지 버전의 예약 특전 ‘영마의 손가락 피리’, 스틸북 '과거의 영웅' 공개</h3>
                                 <p>
-                                    You are permitted to use this Zay CSS template for your commercial websites. 
-                                    You are <strong>not permitted</strong> to re-distribute the template ZIP file in any kind of template collection websites.
+                                   <strong>"Be the king"</strong><br>
+                                   소울 시리즈, 블러드본, 세키로: 섀도우 다이 트와이스의 개발자 미야자키 히데타카가 디렉터를 맡고, 얼음과 불의 노래의 작가 조지 R.R. 마틴이 세계관 제작에 참여하여 만든 프롬소프트의 3인칭 오픈필드 다크 판타지 액션 RPG 게임 '엘든 링'을 지금 구매하세요.
                                 </p>
                             </div>
                         </div>
@@ -181,15 +177,15 @@ https://templatemo.com/tm-559-zay-shop
                 <div class="container">
                     <div class="row p-5">
                         <div class="mx-auto col-md-8 col-lg-6 order-lg-last">
-                            <img class="img-fluid" src="/resources/img/banner_img_03.jpg" alt="">
+                            <img class="img-fluid" src="/resources/img/banner_img_003.jpg" alt="">
                         </div>
                         <div class="col-lg-6 mb-0 d-flex align-items-center">
                             <div class="text-align-left">
-                                <h1 class="h1">Repr in voluptate</h1>
-                                <h3 class="h2">Ullamco laboris nisi ut </h3>
+                                <h1 class="h1">시리즈 최신작</h1>
+                                <h3 class="h2">「MONSTER HUNTER RISE: SUNBREAK」 6월 30일 발매 결정!</h3>
                                 <p>
-                                    We bring you 100% free CSS templates for your websites. 
-                                    If you wish to support TemplateMo, please make a small contribution via PayPal or tell your friends about our website. Thank you.
+                                    「MONSTER HUNTER RISE」를 더 즐길 수 있는 요소가 다수 추가되는 유료 초대형 확장 콘텐츠 「MONSTER HUNTER RISE: SUNBREAK」가 2022년 6월 30일(목)에 발매됩니다.<br>
+                                    닌텐도 e숍에서는 「MONSTER HUNTER RISE」를 이미 가지고 있는 분이 구매할 수 있는 「MONSTER HUNTER RISE: SUNBREAK」와, 추천 다운로드 콘텐츠와의 세트인 「디럭스 에디션」의 예약 접수가 시작되었습니다.
                                 </p>
                             </div>
                         </div>
@@ -211,10 +207,10 @@ https://templatemo.com/tm-559-zay-shop
     <section class="container py-5">
         <div class="row text-center pt-3">
             <div class="col-lg-6 m-auto">
-                <h1 class="h1">Categories of The Month</h1>
+                <h1 class="h1">Recommended console category</h1>
                 <p>
-                    Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia
-                    deserunt mollit anim id est laborum.
+                    Are you ready to play the representative monopoly of each console device?
+					The game you want is here.
                 </p>
             </div>
         </div>
@@ -244,10 +240,9 @@ https://templatemo.com/tm-559-zay-shop
         <div class="container py-5">
             <div class="row text-center py-3">
                 <div class="col-lg-6 m-auto">
-                    <h1 class="h1">Featured Product</h1>
+                    <h1 class="h1">Popular new product</h1>
                     <p>
-                        Reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.
-                        Excepteur sint occaecat cupidatat non proident.
+                        Check out the information about the new product, which has been highly appreciated by the players.
                     </p>
                 </div>
             </div>

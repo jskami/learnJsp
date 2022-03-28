@@ -14,8 +14,6 @@ public class PageDTO {
 	public PageDTO(int pageNum, int pageAmount) {
 		this.pageNum = pageNum;
 		this.pageAmount = pageAmount;
-
-		
 	}
 
 }
