@@ -21,31 +21,37 @@
                             	<div class="form-group row">
                                     <div class="col-sm-6 mb-3 mb-sm-0">
                                     	<label>번호</label>
-                                        <input type="text" class="form-control" value="${board.b_num}" readonly>
+                                        <input type="text" class="form-control" name="b_num" value="${board.b_num}" readonly>
                                     </div>
                                 </div>
                                 <div class="form-group row">
                                     <div class="col-sm-6 mb-3 mb-sm-0">
                                     	<label>제목</label>
-                                        <input type="text" class="form-control" value="${board.b_subject }" readonly>
+                                        <input type="text" class="form-control" name="b_subject" value="${board.b_subject }" readonly>
                                     </div>
                                 </div>
 								<div class="form-group row">
                                     <div class="col-sm-6 mb-3 mb-sm-0">
                                     	<label>작성자</label>
-                                        <input type="text" class="form-control" value="${board.b_name }" readonly>
+                                        <input type="text" class="form-control" name="b_name" value="${board.b_name }" readonly>
                                     </div>
                                 </div>
                                 <div class="form-group row">
                                     <div class="col-sm-6 mb-3 mb-sm-0">
                                     	<label>내용</label>
-                                        <textarea rows="10" class="form-control" readonly>${board.b_contents }</textarea>
+                                        <textarea rows="10" class="form-control" name="b_contents" readonly>${board.b_contents }</textarea>
+                                    </div>
+                                </div>
+                                <div class="form-group row">
+                                    <div class="col-sm-6 mb-3 mb-sm-0">
+                                    	<label>파일</label>
+                                        <input type="file" class="form-control" name="b_file" value="${board.b_file }" readonly>
                                     </div>
                                 </div>
                                 <div class="form-group row">
                                     <div class="col-sm-6 mb-3 mb-sm-0">
                                     	<label>작성일</label>
-                                        <input type="text" class="form-control" value="${board.b_date }" readonly>
+                                        <input type="text" class="form-control" name="b_date" value="${board.b_date }" readonly>
                                     </div>
                                 </div>
                                 <div class="form-group row">

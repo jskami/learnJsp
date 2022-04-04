@@ -105,7 +105,11 @@ public class Product2Controller {
 	}
 	
 	@GetMapping("/update")
-	public void update(Product2VO product, Model model, PageDTO page) {
+	public String update(Product2VO product, Model model, PageDTO page, HttpSession session) {
+		String a_id = (String)session.getAttribute("a_id");
+		if(a_id == null) {
+			return "redirect:/admin/login";
+		} else {
 		log.info("-------------업데이트를 위한 번호 ------------------");
 		log.info(product);
 		product = service.read(product);  //번호만 사용하여 조회
@@ -113,15 +117,20 @@ public class Product2Controller {
 		log.info(product);
 		model.addAttribute("product", product);
 		model.addAttribute("page", page);
+		} return "/product2/update";
 	}
 	
 	@PostMapping("/update")
-	public String update(Product2VO product, PageDTO page) {
+	public String update(Product2VO product, PageDTO page, HttpSession session) {
+		String a_id = (String)session.getAttribute("a_id");
+		if(a_id == null) {
+			return "redirect:/admin/login";
+		} else {
 		log.info("-------- 업데이트 데이터 ---------------");
 		log.info(product);
 		service.update(product); //업데이트
 		//return "redirect:/product2/view?p_code=" + product.getP_code() + "&pageNum=" + page.getPageNum();
-		return "redirect:/product2/view?p_code=" + product.getP_code() + "&pageNum=" +page.getPageNum();
+		} return "redirect:/product2/view?p_code=" + product.getP_code() + "&pageNum=" +page.getPageNum();
 	}
 	
 	@GetMapping("/delete")

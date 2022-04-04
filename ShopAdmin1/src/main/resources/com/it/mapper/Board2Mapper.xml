@@ -16,7 +16,7 @@
 	</select>
 	<update id="update">
 		update tblboard2 set b_subject = #{b_subject},
-		b_name = #{b_name}, b_contents = #{b_contents}, b_file = #{b_file}
+		b_name = #{b_name}, b_contents = #{b_contents}
 		where b_num = #{b_num}
 	</update>
 	<delete id="delete">

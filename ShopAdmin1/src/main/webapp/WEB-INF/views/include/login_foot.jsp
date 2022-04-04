@@ -12,7 +12,7 @@
                     <ul class="list-unstyled text-light footer-link-list">
                         <li>
                             <i class="fas fa-map-marker-alt fa-fw"></i>
-                            123 Consectetur at ligula 10660
+                            충청북도 청주시 상당구 북문로 00-000
                         </li>
                         <li>
                             <i class="fa fa-phone fa-fw"></i>

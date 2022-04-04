@@ -18,23 +18,23 @@
                         </div>
                         <div class="card-body">
                             <div class="table-responsive">
-                            <form method="post" action="/board2/update?pageNum=${page.pageNum}" class="user" enctype="multipart/form-data">
+                            <form method="post" action="/board2/update?pageNum=${page.pageNum}" class="user" >
                             	<div class="form-group row">
                                     <div class="col-sm-6 mb-3 mb-sm-0">
                                     	<label>번호</label>
-                                        <input type="text" class="form-control" name="b_num" value="${board.b_num}" readonly>
+                                        <input type="text" class="form-control" name="b_num" value="${board.b_num}" readonly />
                                     </div>
                                 </div>
                                 <div class="form-group row">
                                     <div class="col-sm-6 mb-3 mb-sm-0">
                                     	<label>제목</label>
-                                        <input type="text" class="form-control" name="b_subject" value="${board.b_subject}">
+                                        <input type="text" class="form-control" name="b_subject" value="${board.b_subject}" />
                                     </div>
                                 </div>
 								<div class="form-group row">
                                     <div class="col-sm-6 mb-3 mb-sm-0">
                                     	<label>작성자</label>
-                                        <input type="text" class="form-control" name="b_name" value="${board.b_name}">
+                                        <input type="text" class="form-control" name="b_name" value="${board.b_name}" />
                                     </div>
                                 </div>
                                 <div class="form-group row">
@@ -43,18 +43,14 @@
                                         <textarea rows="10" class="form-control" name="b_contents">${board.b_contents}</textarea>
                                     </div>
                                 </div>
-                                <!-- <div class="form-group row">
-                                    <div class="col-sm-6 mb-3 mb-sm-0">
-                                    	<label>파일</label>
-                                        <input type="file" class="form-control" name="b_file">
-                                    </div>
-                                </div> -->
+                                
                                 <div class="form-group row">
                                     <div class="col-sm-6 mb-3 mb-sm-0">
                                     	<label>작성일</label>
                                         ${board.b_date}
                                     </div>
                                 </div>
+                                
                                 <div class="form-group row">
                                     <div class="col-sm-6 mb-3 mb-sm-0">
                                         <input type="submit" class="form-control" value="수정하기">

@@ -23,37 +23,37 @@
 						   <div class="form-group row">
                                <div class="col-sm-6 mb-3 mb-sm-0">
                                	   <label>번호</label>
-                                   <input type="text" class="form-control" value="${notice.n_num}" readonly> <!-- 보드안에 있는 여러 레코드 중에서 해당하는 번호를!-의 의미 -->
+                                   <input type="text" class="form-control" name="n_num" value="${notice.n_num}" readonly> <!-- 보드안에 있는 여러 레코드 중에서 해당하는 번호를!-의 의미 -->
                                </div>
                            </div>
                            <div class="form-group row">
                                <div class="col-sm-6 mb-3 mb-sm-0">
                                	   <label>제목</label>
-                                   <input type="text" class="form-control" value="${notice.n_subject}" readonly>
+                                   <input type="text" class="form-control" name="n_subject" value="${notice.n_subject}" readonly>
                                </div>
                            </div>
                            <div class="form-group row">
                                <div class="col-sm-6 mb-3 mb-sm-0">
                                	   <label>작성자</label>
-                                   <input type="text" class="form-control" value="${notice.n_name}" readonly>
+                                   <input type="text" class="form-control" name="n_name" value="${notice.n_name}" readonly>
                                </div>
                            </div>
                            <div class="form-group row">
                            		<div class="col-sm-6 mb-3 mb-sm-0">
                            			<label>내용</label>
-                               		<textarea rows="10" cols=150" class="form-control" readonly>${notice.n_contents}</textarea>
+                               		<textarea rows="10" cols=150" class="form-control" name="n_contents" readonly>${notice.n_contents}</textarea>
                            		</div>
                            </div>
                            <div class="form-group row">
                                <div class="col-sm-6 mb-3 mb-sm-0">
                                	   <label>첨부 파일</label>
-                                   <input type="text" class="form-control" value="${notice.n_file}" readonly>
+                                   <input type="text" class="form-control" name="n_file" value="${notice.n_file}" readonly>
                                </div>
                            </div>
                            <div class="form-group row">
                                <div class="col-sm-6 mb-3 mb-sm-0">
                                	   <label>작성일</label>
-                                   <input type="text" class="form-control" value="${notice.n_date}" placeholder="작성일">
+                                   <input type="text" class="form-control" name="n_date" value="${notice.n_date}" placeholder="작성일">
                                </div>
                            </div>
                            <div class="form-group row">

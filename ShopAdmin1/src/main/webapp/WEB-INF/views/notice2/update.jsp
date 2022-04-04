@@ -20,7 +20,7 @@
                         <div class="card-body">
                             <div class="table-responsive">
 
-						<form method="post" action="/notice2/update" class="user">
+						<form method="post" action="/notice2/update" class="user" enctype="multipart/form-data">
                            <div class="form-group row">
                                <div class="col-sm-6 mb-3 mb-sm-0">
                                	   <label>번호</label>

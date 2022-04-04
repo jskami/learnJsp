@@ -35,19 +35,19 @@
 						   <div class="form-group row">
                                <div class="col-sm-6 mb-3 mb-sm-0">
                                	   <label>상품번호</label>
-                                   <input type="text" class="form-control" value="${product.p_code}" readonly>
+                                   <input type="text" class="form-control" name="p_code" value="${product.p_code}" readonly>
                                </div>
                            </div>
 						   <div class="form-group row">
                                <div class="col-sm-6 mb-3 mb-sm-0">
                                	   <label>상품명</label>
-                                   <input type="text" class="form-control" value="${product.p_name}" readonly>
+                                   <input type="text" class="form-control" name="p_name" value="${product.p_name}" readonly>
                                </div>
                            </div>
                            <div class="form-group row">
                                <div class="col-sm-6 mb-3 mb-sm-0">
                                	   <label>단가</label>
-                                   <input type="text" class="form-control" value="${product.p_price}" readonly>
+                                   <input type="text" class="form-control" name="p_price" value="${product.p_price}" readonly>
                                </div>
                            </div>
                            <div class="form-group row">
@@ -65,13 +65,13 @@
                            <div class="form-group row">
                                <div class="col-sm-6 mb-3 mb-sm-0">
                                	   <label>작성일</label>
-                                   <input type="text" class="form-control" value="${product.p_rdate}" placeholder="작성일" readonly>
+                                   <input type="text" class="form-control" name="p_rdate" value="${product.p_rdate}" placeholder="작성일" readonly>
                                </div>
                            </div>
                            <div class="form-group row">
                                <div class="col-sm-6 mb-3 mb-sm-0">
                                	   <label>수정일</label>
-                                   <input type="text" class="form-control" value="${product.p_udate}" placeholder="수정일" readonly>
+                                   <input type="text" class="form-control" name="p_udate" value="${product.p_udate}" placeholder="수정일" readonly>
                                </div>
                            </div>
                            <div class="form-group row">

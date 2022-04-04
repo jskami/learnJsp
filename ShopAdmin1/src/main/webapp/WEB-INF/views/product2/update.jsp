@@ -18,7 +18,7 @@
                         </div>
                         <div class="card-body">
                             <div class="table-responsive">
-                            <form method="post" action="/product2/update?pageNum=${page.pageNum}" class="user" enctype="multipart/form-data">
+                            <form method="post" action="/product2/update?pageNum=${page.pageNum}" class="user" enctype="multipart/form-data" > <!-- enctype="multipart/form-data" -->
                             	<div class="form-group row">
                                     <div class="col-sm-6 mb-3 mb-sm-0">
                                     	<label>상품번호</label>
