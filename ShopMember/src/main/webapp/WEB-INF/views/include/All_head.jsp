@@ -76,11 +76,11 @@
                             <a class="nav-link" href="/order2/list">Order</a>
                         </li>
                         <li class="nav-item">
-						<c:if test="${a_id == null }">
-                            <a class="nav-link" href="/admin/login">Login</a>
+						<c:if test="${m_id == null }">
+                            <a class="nav-link" href="/member2/login">Login</a>
                         </c:if>
-                        <c:if test="${a_id != null }">
-                            <a class="nav-link" href="/admin/logout">Logout</a>
+                        <c:if test="${m_id != null }">
+                            <a class="nav-link" href="/member2/logout">Logout</a>
                         </c:if>
                         </li>                        
                     </ul>

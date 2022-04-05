@@ -2,7 +2,8 @@
     pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>   
 <%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt" %>
-<%@include file="../include/header.jsp" %>
+<%@include file="../include/All_head.jsp" %>
+<br>
                 <!-- Begin Page Content -->
                 <div class="container-fluid">
 
@@ -16,7 +17,7 @@
                     <!-- DataTales Example -->
                     <div class="card shadow mb-4">
                         <div class="card-header py-3">
-                            <h6 class="m-0 font-weight-bold text-primary"><a href="/shop/list">상품목록</a> |
+                            <h6 class="m-0 font-weight-bold text-primary"><a href="/shop2/list">상품목록</a> |
                             &nbsp;${m_id}&nbsp;&nbsp;${m_name}</h6>
                         </div>
                         <div class="card-body">
@@ -41,10 +42,10 @@
                                 				<td>${cartsub.cs_code}</td>
                                 				<td>${cartsub.p_code}</td>
                                 				<td>${cartsub.p_name}</td>
-                                				<td><img src="/resources/product/${cartsub.p_code}.jpg" height="100"></td>
+                                				<td><img src="/resources/product2/${cartsub.p_code}.jpg" height="100"></td>
                                 				<td>${cartsub.p_price}</td>
                                 				<td>
-                                					<form method="post" action="/shop/cartupdate">
+                                					<form method="post" action="/shop2/cartupdate">
                                 					<input type="hidden" name="cs_code"	value="${cartsub.cs_code}">
                                 					<select name="cs_cnt">
                                 						<c:forEach var="count" begin="1" end="30" step="1"> <!-- 여기는 반드시 1개 이상은 담겨있다는 조건에 따른 식이다. -->
@@ -57,7 +58,7 @@
                                 						</c:forEach>
                                 					</select>
                                 					<input type="submit" value="수정">
-                                					<a href="/shop/cartdelete?cs_code=${cartsub.cs_code}&cm_code=${cm_code}">삭제</a>
+                                					<a href="/shop2/cartdelete?cs_code=${cartsub.cs_code}&cm_code=${cm_code}">삭제</a>
                                 					</form>
                                 				</td>
                                 				<td>${cartsub.cs_money}</td>
@@ -84,4 +85,4 @@
                 </div>
                 <!-- /.container-fluid -->
                 
-<%@include file="../include/footer.jsp" %>         
+<%@include file="../include/All_foot.jsp" %>         

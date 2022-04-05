@@ -3,17 +3,16 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>   
 <%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt" %>
 <%@include file="../include/shop_head.jsp" %>
-<br>
-					<!-- Page Heading -->
-                    <h1 class="h3 mb-2 text-gray-800">세션 확인</h1>
-                    <p> 관리자 ID : ${a_id}</p>
-                    
                 <!-- Begin Page Content -->
                 <div class="container-fluid">
 
                     <!-- Page Heading -->
-                    <h1 class="h3 mb-2 text-gray-800">Shop List</h1>
-                    
+                    <h1 class="h3 mb-2 text-gray-800">장바구니 LIST</h1>
+                    <p> 사용자 ID : ${m_id}</p>
+					<p> 사용자 NAME : ${m_name}</p>
+                    <!-- <a href="/member/login">로그인</a> -->
+                    <p class="mb-4"></p>
+
                     <!-- DataTales Example -->
                     <div class="card shadow mb-4">
                         <div class="card-header py-3">
@@ -38,11 +37,11 @@
                                 								<td>${product.p_code}</td>               					
                                 							</tr>
                                 							<tr>	
-                                								<td><img src="/resources/product/${product.p_code}.jpg" width="250" height="150"></td>
-                                							</tr>	
-                                							<tr>	
                                 								<td>${product.p_name}</td>
                                 							</tr>
+                                							<tr>	
+                                								<td><img src="/resources/product/${product.p_code}.jpg" width="250" height="150"></td>
+                                							</tr>	
                                 							<tr>	
                                 								<td>${product.p_price}</td>
                                 							</tr>
@@ -72,11 +71,11 @@
                                 								<td>${product.p_code}</td>               					
                                 							</tr>
                                 							<tr>	
-                                								<td><img src="/resources/product/${product.p_code}.jpg" width="250" height="150"></td>
-                                							</tr>	
-                                							<tr>	
                                 								<td>${product.p_name}</td>
                                 							</tr>
+                                							<tr>	
+                                								<td><img src="/resources/product/${product.p_code}.jpg" width="250" height="150"></td>
+                                							</tr>	
                                 							<tr>	
                                 								<td>${product.p_price}</td>
                                 							</tr>
@@ -106,11 +105,11 @@
                                 								<td>${product.p_code}</td>               					
                                 							</tr>
                                 							<tr>	
-                                								<td><img src="/resources/product/${product.p_code}.jpg" width="250" height="150"></td>
-                                							</tr>	
-                                							<tr>	
                                 								<td>${product.p_name}</td>
                                 							</tr>
+                                							<tr>	
+                                								<td><img src="/resources/product/${product.p_code}.jpg" width="250" height="150"></td>
+                                							</tr>	
                                 							<tr>	
                                 								<td>${product.p_price}</td>
                                 							</tr>

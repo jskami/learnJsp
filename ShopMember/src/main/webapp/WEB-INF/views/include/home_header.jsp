@@ -83,7 +83,7 @@
                         <c:if test="${m_id != null }">
                             <a class="nav-link" href="/member2/logout">Logout</a>
                         </c:if>
-                        </li> 
+                        </li>  
                     </ul>
                 </div>
                 <div class="navbar align-self-center d-flex">

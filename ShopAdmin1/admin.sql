@@ -35,11 +35,15 @@ select * from tbladmin where
 /* tblboard2 테이블 */
 create table tblboard2 (
  b_num int not null primary key AUTO_INCREMENT,
+ a_id varchar(50) not null,
+ m_id varchar(50) not null,
  b_subject varchar(100) not null,
  b_contents varchar(2000) not null,
  b_file varchar(200), -- 업로드용 필드, null값은 허용(파일 업로드는 선택사항이니까) 
  b_name varchar(50) not null,
- b_date datetime not null default sysdate()
+ b_date datetime not null default sysdate(),
+ foreign key (a_id) references tbladmin(a_id),
+ foreign key (m_id) references tblmember2(m_id)
 );
 
 select * from tblboard2 order by b_num desc limit 10;
@@ -192,6 +196,7 @@ insert into tblcartmain2 (m_id) values ('lion');
 select * from tblcartmain2;
 
 -- 카트sub에 상품 정보가 필요하다.(장바구니 sub)
+insert into tblcartsub2 (cm_code, p_code, cs_cnt) values (1, 15, 3);
 insert into tblcartsub2 (cm_code, p_code, cs_cnt) values (1001, 1001, 1); -- 카트 메인코드(tiger)1001, 상품 코드 1001, 구매 수량
 insert into tblcartsub2 (cm_code, p_code, cs_cnt) values (1001, 1003, 5);
 insert into tblcartsub2 (cm_code, p_code, cs_cnt) values (1002, 1002, 1);

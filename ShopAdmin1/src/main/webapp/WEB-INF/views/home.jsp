@@ -2,8 +2,8 @@
     pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <%-- <%@ page session="false" %> --%>
-<%@include file="./include/All_head.jsp" %> 
-
+<%@include file="./include/home_header.jsp" %> 
+<!--
 <br>
 	<b><h1>현재 페이지는 관리자 전용입니다.</h1></b>
 		<hr>
@@ -17,4 +17,5 @@
 	</c:if>
 <br>
 <br>
-<%@include file="./include/All_foot.jsp" %>
+ -->
+<%@include file="./include/home_footer.jsp" %>
