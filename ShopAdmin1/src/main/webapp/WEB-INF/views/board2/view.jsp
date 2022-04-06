@@ -56,16 +56,18 @@
                                 </div>
                                 <div class="form-group row">
                                     <div class="col-sm-6 mb-3 mb-sm-0">
+                                    <!-- 제3자가 볼 때 수정 / 삭제 버튼이 보이지 않는 방법(체크) -->
+                                    	<%-- <c:if test="${a_id != null || board.b_name == m_id}"> --%>
                                         <a href="/board2/update?b_num=${board.b_num}&pageNum=${page.pageNum}">[수정]</a>
                                         &nbsp;&nbsp;&nbsp;
                                         <a href="/board2/delete?b_num=${board.b_num}">[삭제]</a>
+                                    	<%-- </c:if> --%>
                                     </div>
                                 </div>
 
                             </div>
                         </div>
                     </div>
-
                 </div>
                 <!-- /.container-fluid -->
 <%@include file="../include/All_foot.jsp" %>

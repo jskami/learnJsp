@@ -19,7 +19,6 @@
     <fullyQualifiedTypeName name="com.it.domain.OrdermemberDTO"/>
     <fullyQualifiedTypeName name="com.it.domain.PageViewDTO"/>
     <fullyQualifiedTypeName name="com.it.sample.SampleTest"/>
-    <fullyQualifiedTypeName name="com.it.domain.AdminVO"/>
     <fullyQualifiedTypeName name="com.it.service.AdminServiceImpl"/>
     <fullyQualifiedTypeName name="javax.servlet.http.HttpServletResponse"/>
     <fullyQualifiedTypeName name="lombok.extern.log4j.Log4j"/>
@@ -45,4 +44,5 @@
     <fullyQualifiedTypeName name="lombok.Setter"/>
     <fullyQualifiedTypeName name="javax.servlet.http.HttpSession"/>
     <fullyQualifiedTypeName name="org.springframework.ui.Model"/>
+    <fullyQualifiedTypeName name="com.it.domain.AdminVO"/>
 </qualifiedTypeNameHistroy>

@@ -36,122 +36,133 @@ public class Board2Controller {
 	private Board2Service service;
 	
 	@GetMapping("/list") // ex) http://주소:8080/board/list <-요기 (하위구조)
-	public String list(Model model, PageDTO page, HttpSession session ) {
+	public String list(Model model, PageDTO page, HttpSession session) {
 									/*, @RequestParam("user") String user, @RequestParam("age") int age*/ // 웹에서 처리할 이름(반드시 동일해야 할 필욘 없지만 편의상 동일하게 하는게 좋겠지?), 웹 브라우저로 전달하기 위해 만드는중 / 모델 객체..왜 뜬금 등장? / @RequestParam(변수명 지정) 타입 변수명 / 괄호 안의 파란색 유저는 웹 브라우저에서 사용하는 변수명이고 타입 뒤에 갈색 유저는 클래스 내에서 쓰는 변수명이다.
 		                            // Model 객체 : VO객체를 저장해서 jsp 파일로 전송, 운반형, 내장객체, 테이블에 있는 자료를 jsp파일로 넘겨주는 역할, 현재 VO객체는 비어있는 상태이다.
 									// 현재는 리스트에 줄게 없으니 이대로 두고 호출만 해보자! - 톰캣 실행!
 									// list.jsp에 데이터를 전달해야 함, 오직 Model만이 데이터 전달이 가능하다!
 		String a_id = (String)session.getAttribute("a_id");
-		if(a_id == null) {
-			return "redirect:/admin/login";
+		String m_id = (String)session.getAttribute("m_id");
+		if (a_id != null || m_id != null) {
+			model.addAttribute("list", service.getList(page)); // getList로 조회한 모든 내용을 list변수로 전달, service.getList()는 다중데이터이다.
+			int total = service.getTotalCount();  // 전체 레코드 개수 호출
+			PageViewDTO pageview = new PageViewDTO(page, total);
+			model.addAttribute("pageview", pageview);
+			return "/board2/list";
 		} else {
-		model.addAttribute("list", service.getList(page)); // getList로 조회한 모든 내용을 list변수로 전달, service.getList()는 다중데이터이다.
-		int total = service.getTotalCount();  // 전체 레코드 개수 호출
-		PageViewDTO pageview = new PageViewDTO(page, total);
-		model.addAttribute("pageview", pageview);
-	} return "/board2/list";
+			return "redirect:/member2/login";
+		}
 	}
 	
 	@GetMapping("/insert")
 	public String insert(HttpSession session) { // 현재 데이터가 없는 상태인거야! 비어있는 폼으로만 나오는거야.
 		String a_id = (String)session.getAttribute("a_id");
-		if(a_id == null) {
-			return "redirect:/admin/login";
-		} else {
+		String m_id = (String)session.getAttribute("m_id");
+		if(a_id != null || m_id != null) {
 			return "/board2/insert";
+		} else {
+			return "redirect:/admin/login";
 		}
 	}
 	
 	@PostMapping("/insert")
 	public String insert(HttpServletRequest request, HttpSession session) {
 		String a_id = (String)session.getAttribute("a_id");
-		if(a_id == null) {
-			return "redirect:/admin/login";
+		String m_id = (String)session.getAttribute("m_id");
+		if(a_id != null || m_id != null) {
+			DiskFileUpload upload = new DiskFileUpload(); // 파일 전송 컴포넌트 객체 생성
+			try {
+				List items = upload.parseRequest(request); // 웹브라우저 전송 객체 생성해서 업로드 컴포넌트에 전달
+				log.info("=========구분선========");
+				log.info(request);
+				log.info(items);
+				
+				Iterator params = items.iterator(); // 반복자 생성, params변수로 반복생성 하도록 만든 상태
+				log.info("=========구분선========");
+				log.info(params);
+				String filepath = "C:\\myWorkSpace\\learnJsp\\pds"; // 저장 위치(물리적 경로)
+				//log.info(items.size());
+				Board2VO board = new Board2VO(); // 객체생성
+				while (params.hasNext()) { // form 객체가 있을 경우
+					FileItem item = (FileItem)params.next(); // 폼 형식 객체를 변수에 저장, 필드 순서로 하나씩 추출
+					if (item.isFormField()) { // 파일 형식이 아니라면 / 폼 내에 필드 타입 형식이 무엇이냐를 묻는 것
+						// p_code = item.getString(); // 파일보다 먼저 반환 된다.
+						String fieldname = item.getFieldName(); // jsp파일에 있는 name들을 말한다. 이제 값도 설정해보자
+						String fieldvalue = item.getString("utf-8");
+						log.info("=========구분선========");
+						log.info(fieldname + ":" + fieldvalue);
+						if (fieldname.equals("b_subject")) { // 문자열 비교할거니까 이퀄스를 사용해야해!
+							board.setB_subject(fieldvalue);
+						} else if (fieldname.equals("b_name")) {
+							board.setB_name(fieldvalue);
+						} else if (fieldname.equals("b_contents")) {
+							board.setB_contents(fieldvalue);
+						}
+					} else { // 바이너리 파일이라면
+						String fname = item.getName();
+						log.info("=========구분선========");
+						log.info(fname);
+						if (fname != "") {
+							board.setB_file(fname);
+							File file = new File(filepath + "/" + fname); // 파일객체 생성
+							item.write(file); // 해당 경로에 파일 저장, 여기가 최종 작업
+						}
+					}
+				} log.info(board);
+				service.insert(board);
+				
+			} catch (Exception e) {
+				System.out.println(e);
+			}
+			return "redirect:/board2/list";
 		} else {
-		DiskFileUpload upload = new DiskFileUpload(); // 파일 전송 컴포넌트 객체 생성
-		try {
-			List items = upload.parseRequest(request); // 웹브라우저 전송 객체 생성해서 업로드 컴포넌트에 전달
-			log.info("=========구분선========");
-			log.info(request);
-			log.info(items);
-			
-			Iterator params = items.iterator(); // 반복자 생성, params변수로 반복생성 하도록 만든 상태
-			log.info("=========구분선========");
-			log.info(params);
-			String filepath = "C:\\myWorkSpace\\learnJsp\\pds"; // 저장 위치(물리적 경로)
-			//log.info(items.size());
-			Board2VO board = new Board2VO(); // 객체생성
-			while (params.hasNext()) { // form 객체가 있을 경우
-				FileItem item = (FileItem)params.next(); // 폼 형식 객체를 변수에 저장, 필드 순서로 하나씩 추출
-				if (item.isFormField()) { // 파일 형식이 아니라면 / 폼 내에 필드 타입 형식이 무엇이냐를 묻는 것
-					// p_code = item.getString(); // 파일보다 먼저 반환 된다.
-					String fieldname = item.getFieldName(); // jsp파일에 있는 name들을 말한다. 이제 값도 설정해보자
-					String fieldvalue = item.getString("utf-8");
-					log.info("=========구분선========");
-					log.info(fieldname + ":" + fieldvalue);
-					if (fieldname.equals("b_subject")) { // 문자열 비교할거니까 이퀄스를 사용해야해!
-						board.setB_subject(fieldvalue);
-					} else if (fieldname.equals("b_name")) {
-						board.setB_name(fieldvalue);
-					} else if (fieldname.equals("b_contents")) {
-						board.setB_contents(fieldvalue);
-					}
-				} else { // 바이너리 파일이라면
-					String fname = item.getName();
-					log.info("=========구분선========");
-					log.info(fname);
-					if (fname != "") {
-						board.setB_file(fname);
-						File file = new File(filepath + "/" + fname); // 파일객체 생성
-						item.write(file); // 해당 경로에 파일 저장, 여기가 최종 작업
-					}
-				}
-			} log.info(board);
-			service.insert(board);
-			
-		} catch (Exception e) {
-			System.out.println(e);
-		}
-		return "redirect:/board2/list";
+			return "redirect:/admin/login";
 		}
 	}
 	
 	@GetMapping("/view")
 	public String view(Board2VO board, Model model, PageDTO page, HttpSession session) {
 		String a_id = (String)session.getAttribute("a_id");
-		if(a_id == null) {
-			return "redirect:/admin/login";
+		String m_id = (String)session.getAttribute("m_id");
+		if(a_id != null || m_id != null) {
+			log.info("---------------읽기 전--------------------");
+			log.info(board);
+			board = service.read(board);
+			log.info("----------------읽은 후-------------------");
+			log.info(board);
+			model.addAttribute("board", board);
+			model.addAttribute("page", page);
+			return "/board2/view";
 		} else {
-		log.info("---------------읽기 전--------------------");
-		log.info(board);
-		board = service.read(board);
-		log.info("----------------읽은 후-------------------");
-		log.info(board);
-		model.addAttribute("board", board);
-		model.addAttribute("page", page);
-		} return "/board2/view";
+			return "redirect:/admin/login";
+		}
 	}
 	
 	@GetMapping("/update")
 	public String update(Board2VO board, Model model, PageDTO page, HttpSession session) {
 		String a_id = (String)session.getAttribute("a_id");
-		if(a_id == null) {
-			return "redirect:/admin/login";
+		String m_id = (String)session.getAttribute("m_id");
+		board = service.read(board);
+		String writer = board.getB_name();
+		if(a_id != null || m_id.equals(writer)) {
+			log.info("-------------업데이트를 위한 번호 ------------------");
+			log.info(board);
+			board = service.read(board);  //번호만 사용하여 조회
+			log.info("-------------업데이트를 위한 데이터-------------------");
+			log.info(board);
+			model.addAttribute("board", board);
+			model.addAttribute("page", page);
+			return "/board2/update";
 		} else {
-		log.info("-------------업데이트를 위한 번호 ------------------");
-		log.info(board);
-		board = service.read(board);  //번호만 사용하여 조회
-		log.info("-------------업데이트를 위한 데이터-------------------");
-		log.info(board);
-		model.addAttribute("board", board);
-		model.addAttribute("page", page);
-		} return "/board2/update";
+			return "redirect:/member2/login";
+		}
 	}
 	
 	@PostMapping("/update")
 	public String update(Board2VO board, PageDTO page, HttpSession session) {
 		String a_id = (String)session.getAttribute("a_id");
-		if(a_id == null) {
+		String m_id = (String)session.getAttribute("m_id");
+		if(a_id != null) {
 			return "redirect:/admin/login";
 		} else {
 		log.info("-------- 업데이트 데이터 ---------------");

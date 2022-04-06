@@ -38,7 +38,7 @@ public class Notice2Controller {
 	public String list(Model model, PageDTO page, HttpSession session) { // list가 현재 자바 프로그램 내에서만 볼 수 있는 상태이기 때문에, 이녀석을 물고와서 웹으로 뿌려줘야 사용자도 list를 볼 수 있는데 이 역할을 해주는 녀석이 Model(모델)이다.
 		String a_id = (String)session.getAttribute("a_id");
 		if(a_id == null) {
-			return "redirect:/admin/login";
+			return "redirect:/member2/login";
 		} else {
 		model.addAttribute("list", service.getList(page));
 		int total = service.getTotalCount();

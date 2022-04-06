@@ -1,5 +1,9 @@
 package com.it.controller;
 
+import java.io.IOException;
+import java.io.PrintWriter;
+
+import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -90,18 +94,26 @@ public class Member2Controller {
 	}
 	
 	@PostMapping("/login")
-	public String login(Member2VO member, HttpSession session) { // 로그인에서 넘어오는 데이터를 memberVO의 member가방에 담을거야. 세션객체의 세션변수를 지정해준다.
+	public void login(Member2VO member, HttpSession session, HttpServletResponse response) throws IOException { // 로그인에서 넘어오는 데이터를 memberVO의 member가방에 담을거야. 세션객체의 세션변수를 지정해준다.
 		log.info(member);
-		boolean chk = service.auth(member); // 서비스에 로그인 정보를 건네준다. // 현재 서비스에 로그인이 찍히지 않으니까 여기서 해보자. // 체크변수를 불리언 타입으로 만들어서 확인해보자.
-		if (chk == true) {
-			member = service.read(member); // read.(member)에서 멤버에는 id와pw가 들어있다.
-			session.setAttribute("m_id", member.getM_id()); // 세션변수 생성
-			session.setAttribute("m_name", member.getM_name()); // 세션변수 생성
-			log.info("인증성공");
-			return "redirect:/";
+		response.setContentType("text/html; charset=euc-kr");
+		PrintWriter out = response.getWriter();
+	
+		if (session.getAttribute("a_id") != null) {
+			out.println("<script>alert('이미 관리자로 로그인되었습니다'); history.go(-1); </script>");
+			out.flush();
 		} else {
-			log.info("인증실패");
-			return "redirect:/member2/login";
+			boolean chk = service.auth(member); // 서비스에 로그인 정보를 건네준다. // 현재 서비스에 로그인이 찍히지 않으니까 여기서 해보자. // 체크변수를 불리언 타입으로 만들어서 확인해보자.
+			if (chk == true) {
+				member = service.read(member); // read.(member)에서 멤버에는 id와pw가 들어있다.
+				session.setAttribute("m_id", member.getM_id()); // 세션변수 생성
+				session.setAttribute("m_name", member.getM_name()); // 세션변수 생성
+				out.println("<script>alert('로그인 성공'); location.href='/' </script>");
+				out.flush();
+			} else {
+				out.println("<script>alert('로그인 실패'); history.go(-1); </script>");
+				out.flush();
+			}
 		}
 	}
 	

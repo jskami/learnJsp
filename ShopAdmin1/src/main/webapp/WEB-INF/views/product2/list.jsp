@@ -7,7 +7,7 @@
 					<!-- Page Heading -->
                     <h1 class="h3 mb-2 text-gray-800">세션 확인</h1>
                     <p> 관리자 ID : ${a_id}</p>
-                    
+                    <p> 사용자 ID : ${m_id}</p>
                 <!-- Begin Page Content -->
                 <div class="container-fluid">
 
@@ -39,8 +39,8 @@
                                 				<td><a href="/product2/view?p_code=${product.p_code}">${product.p_name}</a></td>
                                 				<td>${product.p_price}</td>
                                 				<td><img src="/resources/product/${product.p_code}.jpg" height="50"></td>
-                                				<td><fmt:formatDate pattern="yyyy-mm-dd" value="${product.p_rdate}"/>
-                                				<td><fmt:formatDate pattern="yyyy-mm-dd" value="${product.p_udate}"/>
+                                				<td><fmt:formatDate pattern="yyyy-MM-dd" value="${product.p_rdate}"/>
+                                				<td><fmt:formatDate pattern="yyyy-MM-dd" value="${product.p_udate}"/>
                                 			</tr>
                                 		</c:forEach>
                                 		<tr>

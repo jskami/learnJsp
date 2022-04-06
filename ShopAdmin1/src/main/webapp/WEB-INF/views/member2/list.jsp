@@ -7,6 +7,7 @@
 					<!-- Page Heading -->
                     <h1 class="h3 mb-2 text-gray-800">세션 확인</h1>
                     <p> 관리자 ID : ${a_id}</p>
+                    <p> 사용자 ID : ${m_id}</p>
                     
                 <!-- Begin Page Content -->
                 <div class="container-fluid">

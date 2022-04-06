@@ -28,7 +28,12 @@
 								<div class="form-group row">
                                     <div class="col-sm-6 mb-3 mb-sm-0">
                                     	<label>작성자</label>
-                                        <input type="text" class="form-control" name="b_name" value="${a_id}" readonly>
+                                    	<c:if test="${m_id != null }"> <!-- 보드 이용자가 관리자 or 사용자인지 체크 -->
+	                                        <input type="text" class="form-control" name="b_name" value="${m_id}" readonly>
+                                    	</c:if>
+                                    	<c:if test="${a_id != null }">
+	                                        <input type="text" class="form-control" name="b_name" value="${a_id}" readonly>
+                                    	</c:if>
                                     </div>
                                 </div>
                                 <div class="form-group row">
